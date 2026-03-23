@@ -1,0 +1,1579 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHELeads India — Content Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#DC0E2A;--rl:#fdecea;--rm:#f5c0c8;
+  --dark:#5C3D2E;--dark2:#3d2318;--med:#9C6B4E;
+  --bg:#EDE8E0;--cream:#F7F3EE;--white:#fff;
+  --text:#3a2a20;--muted:#7a6254;--bdr:rgba(92,61,46,0.15);
+  --green:#16a34a;--amber:#d97706;--blue:#1e40af;--purple:#5b21b6;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);min-height:100vh;font-size:14px}
+
+/* HEADER */
+.hdr{background:var(--dark2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.logo{display:flex;flex-direction:column}
+.logo-name{font-family:'Playfair Display',serif;font-size:17px;color:#fff;display:flex;align-items:center;gap:7px}
+.rdot{width:8px;height:8px;background:var(--red);border-radius:50%}
+.logo-sub{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.8px;text-transform:uppercase;margin-top:2px}
+.hdr-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hdr-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:16px;font-size:11px;cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);background:transparent;font-family:'DM Sans',sans-serif}
+.hdr-btn:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.hdr-btn .dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.hdr-btn .dot.ok{background:#22c55e}
+.goals-locked{background:rgba(220,14,42,.2);border-color:rgba(220,14,42,.4);color:#ffb3bc}
+.goals-set{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:#86efac}
+
+/* WRAP */
+.wrap{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+
+/* CARDS */
+.card{background:var(--white);border-radius:14px;border:1px solid var(--bdr);padding:20px;margin-bottom:14px}
+.card-red{background:var(--rl);border-color:var(--rm)}
+.card-dk{background:var(--dark2);color:#fff;border-color:transparent}
+.card-amber{background:#fffbeb;border-color:#fcd34d}
+
+/* SECTION */
+.slabel{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--med);margin:22px 0 10px}
+.slabel:first-child{margin-top:0}
+.page-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--dark2);margin-bottom:4px}
+.page-sub{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+
+/* TAB NAV */
+.tabnav{display:flex;gap:5px;margin-bottom:24px;flex-wrap:wrap}
+.tn{padding:8px 16px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--bdr);color:var(--muted);background:var(--cream);transition:all .2s;user-select:none}
+.tn:hover{color:var(--dark2);border-color:var(--dark)}
+.tn.active{background:var(--dark2);color:#fff;border-color:var(--dark2)}
+
+.tabpanel{display:none}
+.tabpanel.active{display:block}
+
+/* FORM INPUTS */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.form-grid,.form-grid-3{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.field input,.field select,.field textarea{padding:9px 12px;border:1.5px solid var(--bdr);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--dark2);background:var(--cream);outline:none;transition:border-color .2s;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);font-size:12px}
+.field .hint{font-size:10px;color:var(--med);margin-top:2px;line-height:1.5}
+
+/* PHOTO INPUTS */
+.photo-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.photo-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:start}
+.photo-row input{padding:8px 10px;border:1.5px solid var(--bdr);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--dark2);background:var(--cream);outline:none;transition:border-color .2s}
+.photo-row input:focus{border-color:var(--red)}
+.remove-btn{padding:8px 10px;background:var(--rl);border:1px solid var(--rm);color:var(--red);border-radius:8px;cursor:pointer;font-size:12px;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.add-photo-btn{padding:8px 14px;background:var(--cream);border:1.5px dashed var(--bdr);color:var(--med);border-radius:8px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;transition:all .2s}
+.add-photo-btn:hover{border-color:var(--dark);color:var(--dark2)}
+
+/* BUTTONS */
+.btn-primary{padding:12px 24px;background:var(--red);color:#fff;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-primary:hover{background:#b8091f;transform:translateY(-1px)}
+.btn-primary:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.btn-secondary{padding:10px 20px;background:var(--cream);color:var(--dark2);border:1.5px solid var(--bdr);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{border-color:var(--dark)}
+.btn-dark{padding:10px 20px;background:var(--dark2);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:background .2s}
+.btn-dark:hover{background:var(--dark)}
+.btn-csv{padding:8px 14px;background:var(--dark2);color:#fff;border:none;border-radius:9px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-csv:hover{background:var(--dark)}
+
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.loading .spin{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* PROGRESS */
+.prog-wrap{display:none;margin-top:10px}
+.prog-wrap.show{display:block}
+.prog-bar{height:5px;background:var(--bdr);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:var(--red);border-radius:4px;transition:width .4s}
+.prog-label{font-size:11px;color:var(--muted);margin-top:5px}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--bdr);margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:1200px}
+thead tr{background:var(--dark2)}
+thead th{padding:10px 12px;color:rgba(255,255,255,.8);font-weight:500;text-align:left;font-size:10px;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--bdr);transition:background .15s}
+tbody tr:hover{background:var(--cream)}
+tbody tr:last-child{border-bottom:none}
+td{padding:9px 12px;vertical-align:top}
+
+/* COLUMN COLOUR CODING */
+td.col-date{background:#f0fdf4;min-width:80px}
+td.col-day{background:#f0fdf4;font-weight:500;color:var(--dark2)}
+td.col-time{background:#fef9c3;font-size:11px;color:var(--amber);font-weight:500;white-space:nowrap}
+td.col-platform{min-width:100px}
+td.col-type{min-width:110px;font-size:11px;color:var(--muted)}
+td.col-content{background:#f8fafc;min-width:280px;max-width:320px;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+td.col-hashtags{background:#fdf4ff;min-width:160px;font-size:11px;color:var(--purple);word-break:break-word}
+td.col-cta{background:#fff7ed;min-width:120px;font-size:11px;color:var(--amber);font-weight:500}
+td.col-canva{background:#ecfdf5;min-width:200px;font-size:11px;color:#065f46;line-height:1.55;word-break:break-word}
+td.col-video{background:#eff6ff;min-width:180px;font-size:11px;color:#1e40af;line-height:1.55;word-break:break-word}
+td.col-bv{min-width:80px}
+td.col-status{min-width:100px}
+
+/* PLATFORM BADGES */
+.pbadge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:500;white-space:nowrap}
+.p-ig{background:#fce7f3;color:#9d174d}
+.p-story{background:#fef3c7;color:#92400e}
+.p-li{background:#dbeafe;color:#1e40af}
+.p-pin{background:#fee2e2;color:#991b1b}
+.p-gmb{background:#dcfce7;color:#166534}
+.p-tw{background:#e0f2fe;color:#0369a1}
+.p-wa{background:#d1fae5;color:#065f46}
+.p-nl{background:#ede9fe;color:#5b21b6}
+.p-blog{background:#fef9c3;color:#854d0e}
+
+/* STATUS PILLS */
+.spill{display:inline-block;padding:3px 9px;border-radius:10px;font-size:10px;font-weight:600;cursor:pointer;user-select:none;transition:all .15s;white-space:nowrap}
+.s0{background:var(--rl);color:var(--red);border:1px solid var(--rm)}
+.s1{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.s2{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+.s3{background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd}
+.s4{background:#dcfce7;color:#166534;border:1px solid #86efac}
+
+/* BV CHECK */
+.bv-wrap{display:flex;flex-direction:column;gap:4px}
+.bv-btn{padding:2px 7px;border-radius:6px;font-size:10px;font-weight:500;cursor:pointer;border:1px solid var(--bdr);background:var(--cream);color:var(--muted);transition:all .15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.bv-btn.cp{background:#dcfce7;color:#166534;border-color:#86efac}
+.bv-btn.cn{background:#dbeafe;color:#1e40af;border-color:#93c5fd}
+
+/* GOALS */
+.goals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.goal-card{background:var(--white);border:1px solid var(--bdr);border-radius:12px;padding:14px}
+.gc-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.gc-val{font-family:'Playfair Display',serif;font-size:20px;color:var(--dark2);margin:4px 0 2px}
+.gc-sub{font-size:11px;color:var(--med)}
+.gc-actual{display:flex;align-items:center;gap:6px;margin-top:8px}
+.gc-actual input{width:100%;padding:5px 8px;border:1.5px solid var(--bdr);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;background:var(--cream);outline:none}
+.gc-actual input:focus{border-color:var(--green)}
+.gap-good{color:var(--green);font-size:11px;font-weight:500}
+.gap-bad{color:var(--red);font-size:11px;font-weight:500}
+
+/* OUTPUT HEADER */
+.out-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.out-title{font-size:15px;font-weight:600;color:var(--dark2)}
+.out-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+/* COLUMN LEGEND */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:12px;background:var(--white);border-radius:10px;border:1px solid var(--bdr)}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-ov.show{display:flex}
+.modal{background:var(--white);border-radius:18px;padding:28px;max-width:580px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--dark2);margin-bottom:5px}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.65}
+.modal-actions{display:flex;gap:8px;margin-top:20px;justify-content:flex-end}
+
+/* API PANEL */
+.api-panel{background:var(--white);border:1.5px solid var(--rm);border-radius:14px;padding:18px;margin-bottom:20px;display:none}
+.api-panel.show{display:block}
+.api-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.api-input{flex:1;min-width:200px;padding:9px 12px;border:1.5px solid var(--bdr);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);outline:none;transition:border-color .2s}
+.api-input:focus{border-color:var(--red)}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--dark2);color:#fff;padding:11px 18px;border-radius:11px;font-size:12px;z-index:1000;transform:translateY(80px);opacity:0;transition:all .3s;max-width:300px;line-height:1.5}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{background:#166534}
+.toast.err{background:#991b1b}
+
+/* NOTICE */
+.notice{padding:10px 14px;border-radius:9px;font-size:12px;line-height:1.65;margin-bottom:12px}
+.n-red{background:var(--rl);border:1px solid var(--rm);color:var(--dark)}
+.n-amber{background:#fffbeb;border:1px solid #fcd34d;color:#78350f}
+.n-green{background:#dcfce7;border:1px solid #86efac;color:#166534}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark2),#7a3520);border-radius:16px;padding:24px 28px;margin-bottom:24px}
+.hero-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:6px}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;max-width:560px}
+.hero-stats{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.hs{background:rgba(255,255,255,.08);border-radius:9px;padding:8px 16px;text-align:center}
+.hs-v{font-family:'Playfair Display',serif;font-size:20px;color:#fff}
+.hs-l{font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+
+/* WEEKLY CALENDAR STRIP */
+.cal-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:20px}
+.cal-day{background:var(--white);border:1px solid var(--bdr);border-radius:10px;padding:10px 8px;text-align:center}
+.cal-day.has-event{border-color:var(--red);background:var(--rl)}
+.cal-day-name{font-size:10px;font-weight:600;color:var(--med);text-transform:uppercase;letter-spacing:.4px}
+.cal-day-event{font-size:10px;color:var(--red);font-weight:500;margin-top:4px;line-height:1.4}
+.cal-day-content{font-size:9px;color:var(--muted);margin-top:3px;line-height:1.4}
+
+/* DIVIDER */
+.div{height:1px;background:var(--bdr);margin:18px 0}
+</style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1278.0" data-gr-ext-installed="">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">
+    <div class="logo-name"><div class="rdot"></div>SHELeads India</div>
+    <div class="logo-sub">Content Operations Hub</div>
+  </div>
+  <div class="hdr-right">
+    <button class="hdr-btn" onclick="toggleApi()">
+      <div class="dot ok" id="apiDot"></div>
+      <span id="apiLabel">API Key Set ✓</span>
+    </button>
+    <button class="hdr-btn goals-set" id="goalsBtn" onclick="openGoals()">
+      <span id="goalsBtnLabel">🎯 March 2026 Goals ✓</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- API PANEL -->
+  <div class="api-panel" id="apiPanel">
+    <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:4px">Set Anthropic API Key</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.6">Stored in your browser only. Get from console.anthropic.com → API Keys. Starts with sk-ant-</div>
+    <div class="api-row">
+      <input class="api-input" type="password" id="apiInput" placeholder="sk-ant-api03-...">
+      <button class="btn-primary" onclick="saveKey()" style="padding:9px 18px">Save</button>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabnav">
+    <div class="tn active" onclick="showTab('generate',this)">✨ Generate Content</div>
+    <div class="tn" onclick="showTab('social',this)">📱 Social Media</div>
+    <div class="tn" onclick="showTab('whatsapp',this)">💬 WhatsApp</div>
+    <div class="tn" onclick="showTab('paid-wa',this)">💎 Paid Members</div>
+    <div class="tn" onclick="showTab('newsletter',this)">📧 Newsletter</div>
+    <div class="tn" onclick="showTab('blog',this)">✍️ Blog</div>
+    <div class="tn" onclick="showTab('goals-view',this)">🎯 Goals Tracker</div>
+  </div>
+
+  <!-- ════ GENERATE TAB ════ -->
+  <div class="tabpanel active" id="tab-generate">
+
+    <div class="hero">
+      <div class="hero-title">Content Operations Hub</div>
+      <div class="hero-sub">Fill in this week's brief below. Claude generates fresh, calendar-aware content for every channel. One brief feeds all sheets.</div>
+      <div class="hero-stats">
+        <div class="hs"><div class="hs-v">10</div><div class="hs-l">Channels</div></div>
+        <div class="hs"><div class="hs-v">5</div><div class="hs-l">Products</div></div>
+        <div class="hs"><div class="hs-v">ABCD</div><div class="hs-l">Newsletter</div></div>
+        <div class="hs"><div class="hs-v">2×</div><div class="hs-l">Human checks</div></div>
+      </div>
+    </div>
+
+    <!-- WEEKLY CALENDAR REFERENCE -->
+    <div class="slabel">This week's fixed SLI calendar</div>
+    <div class="cal-strip">
+      <div class="cal-day"><div class="cal-day-name">Sun</div><div class="cal-day-content">Open promo</div></div>
+      <div class="cal-day has-event"><div class="cal-day-name">Mon</div><div class="cal-day-event">Newsletter out</div><div class="cal-day-content">Tease in content</div></div>
+      <div class="cal-day has-event"><div class="cal-day-name">Tue</div><div class="cal-day-event">Live Training</div><div class="cal-day-content">Reel + reminder</div></div>
+      <div class="cal-day"><div class="cal-day-name">Wed</div><div class="cal-day-content">Value content + photo</div></div>
+      <div class="cal-day has-event"><div class="cal-day-name">Thu</div><div class="cal-day-event">Podcast drops</div><div class="cal-day-content">Story + announce</div></div>
+      <div class="cal-day has-event"><div class="cal-day-name">Fri</div><div class="cal-day-event">Implementation</div><div class="cal-day-content">₹299/session CTA</div></div>
+      <div class="cal-day"><div class="cal-day-name">Sat</div><div class="cal-day-content">Members spotlight</div></div>
+    </div>
+
+    <!-- WEEKLY BRIEF FORM -->
+    <div class="card">
+      <div style="font-size:14px;font-weight:600;color:var(--dark2);margin-bottom:14px">This week's brief — Preeti fills before generating</div>
+
+      <div class="form-grid" style="margin-bottom:14px">
+        <div class="field">
+          <label>Month (for training topics)</label>
+          <select id="f-month">
+            <option value="March">March 2026</option>
+            <option value="April">April 2026</option>
+            <option value="May">May 2026</option>
+            <option value="June">June 2026</option>
+            <option value="July">July 2026</option>
+            <option value="August">August 2026</option>
+            <option value="September">September 2026</option>
+            <option value="October">October 2026</option>
+            <option value="November">November 2026</option>
+            <option value="December">December 2026</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Which week of the month?</label>
+          <select id="f-week">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid" style="margin-bottom:14px">
+        <div class="field">
+          <label>Thursday podcast guest name</label>
+          <input type="text" id="f-guest" placeholder="e.g. Priya Sharma, Founder of GreenCraft India">
+          <div class="hint">Preeti inputs every Friday for next week</div>
+        </div>
+        <div class="field">
+          <label>Guest social media link</label>
+          <input type="text" id="f-guest-link" placeholder="e.g. instagram.com/priyasharma or linkedin.com/in/priya">
+          <div class="hint">Instagram, LinkedIn or website link — for reference</div>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:14px">
+        <label>About this guest — who are they and what will they talk about? (2–3 lines)</label>
+        <textarea id="f-guest-bio" rows="2" placeholder="e.g. Priya runs a sustainable packaging startup in Pune, bootstrapped to ₹50L revenue. She will share how she used Instagram Reels to get her first 100 customers with zero ad spend."></textarea>
+        <div class="hint">This is what Claude uses to personalise ALL Thursday content — podcast announcement, social posts, WhatsApp messages. The more specific, the better the content.</div>
+      </div>
+
+      <div class="form-grid" style="margin-bottom:14px">
+        <div class="field">
+          <label>Tuesday trainer name (if different from Nikita)</label>
+          <input type="text" id="f-trainer" placeholder="e.g. Nikita Vora (default) or Guest trainer name">
+          <div class="hint">Leave blank if Nikita is running training</div>
+        </div>
+        <div class="field">
+          <label>Tuesday trainer social link + 1 line about them</label>
+          <input type="text" id="f-trainer-bio" placeholder="e.g. linkedin.com/in/xyz — Digital marketing consultant, 10 yrs exp">
+          <div class="hint">Only needed if a guest trainer is running Tuesday session</div>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:14px">
+        <label>Any special event / announcement this week?</label>
+        <input type="text" id="f-event" placeholder="e.g. Workshop launch, Diwali, Community milestone, Member win to celebrate...">
+        <div class="hint">Leave blank if nothing special</div>
+      </div>
+
+      <!-- PHOTO LINKS -->
+      <div style="margin-bottom:14px">
+        <label style="font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:8px">Real photos / videos from this week (Google Drive links)</label>
+        <div class="notice n-amber">Photos must be set to "Anyone with the link can view" in Google Drive before pasting. Videos: describe what's in the video — Claude reads the description and writes content around it.</div>
+        <div class="photo-list" id="photoList">
+          <div class="photo-row">
+            <input type="text" placeholder="Google Drive shareable link (photo)">
+            <input type="text" placeholder="Describe this photo/video in 1–2 lines">
+            <button class="remove-btn" onclick="removePhoto(this)">Remove</button>
+          </div>
+        </div>
+        <button class="add-photo-btn" onclick="addPhoto()">+ Add another photo / video</button>
+      </div>
+
+    </div>
+
+    <!-- GENERATE BUTTONS -->
+    <div class="slabel">Generate each sheet separately</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:24px">
+
+      <div class="card" style="padding:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--dark2);margin-bottom:4px">📱 Social Media</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.5">15 days · IG · LinkedIn · Pinterest · Twitter · GMB · Stories</div>
+        <div class="prog-wrap" id="pg-s"><div class="prog-bar"><div class="prog-fill" id="pf-s"></div></div><div class="prog-label" id="pl-s"></div></div>
+        <button class="btn-primary" id="gbtn-s" onclick="genSocial()" style="width:100%;margin-top:8px;font-size:12px;padding:10px">
+          <div class="spin"></div><span>✨ Generate</span>
+        </button>
+      </div>
+
+      <div class="card" style="padding:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--dark2);margin-bottom:4px">💬 WhatsApp</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.5">15 days · 3 messages/day · 45 total · Mixed AI + fixed</div>
+        <div class="prog-wrap" id="pg-w"><div class="prog-bar"><div class="prog-fill" id="pf-w"></div></div><div class="prog-label" id="pl-w"></div></div>
+        <button class="btn-primary" id="gbtn-w" onclick="genWA()" style="width:100%;margin-top:8px;font-size:12px;padding:10px">
+          <div class="spin"></div><span>✨ Generate</span>
+        </button>
+      </div>
+
+      <div class="card" style="padding:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--dark2);margin-bottom:4px">📧 Newsletter</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.5">ABCD system · App · Business · Concept · Digital strategy</div>
+        <div class="prog-wrap" id="pg-n"><div class="prog-bar"><div class="prog-fill" id="pf-n"></div></div><div class="prog-label" id="pl-n"></div></div>
+        <button class="btn-primary" id="gbtn-n" onclick="genNewsletter()" style="width:100%;margin-top:8px;font-size:12px;padding:10px">
+          <div class="spin"></div><span>✨ Generate</span>
+        </button>
+      </div>
+
+      <div class="card" style="padding:16px;border-color:var(--rm)">
+        <div style="font-size:13px;font-weight:600;color:var(--dark2);margin-bottom:4px">💎 Paid Members WhatsApp</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.5">15 days · 3 short messages/day · Premium members only · Pure value, no selling</div>
+        <div class="prog-wrap" id="pg-pm"><div class="prog-bar"><div class="prog-fill" id="pf-pm"></div></div><div class="prog-label" id="pl-pm"></div></div>
+        <button class="btn-primary" id="gbtn-pm" onclick="genPaidWA()" style="width:100%;margin-top:8px;font-size:12px;padding:10px;background:var(--dark2)">
+          <div class="spin"></div><span>✨ Generate</span>
+        </button>
+      </div>
+
+      <div class="card" style="padding:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--dark2);margin-bottom:4px">✍️ Blog</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.5">2 posts · SEO optimised · 900–1100 words · WordPress ready</div>
+        <div class="prog-wrap" id="pg-b"><div class="prog-bar"><div class="prog-fill" id="pf-b"></div></div><div class="prog-label" id="pl-b"></div></div>
+        <button class="btn-primary" id="gbtn-b" onclick="genBlog()" style="width:100%;margin-top:8px;font-size:12px;padding:10px">
+          <div class="spin"></div><span>✨ Generate</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- COLOUR LEGEND -->
+    <div class="legend">
+      <div style="font-size:10px;font-weight:600;color:var(--muted);margin-right:4px">Column colours:</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#f0fdf4;border:1px solid #86efac"></div>Date/Day</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#fef9c3;border:1px solid #fcd34d"></div>Time</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#f8fafc;border:1px solid #cbd5e1"></div>Content</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#fdf4ff;border:1px solid #e9d5ff"></div>Hashtags</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#fff7ed;border:1px solid #fed7aa"></div>CTA</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#ecfdf5;border:1px solid #a7f3d0"></div>Canva Prompt</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#eff6ff;border:1px solid #bfdbfe"></div>Video Prompt</div>
+    </div>
+
+  </div>
+
+  <!-- ════ SOCIAL MEDIA TAB ════ -->
+  <div class="tabpanel" id="tab-social">
+    <div class="out-header">
+      <div class="out-title">📱 Social Media Sheet</div>
+      <div class="out-actions">
+        <button class="btn-csv" onclick="dlCSV('tbl-social','SHELeads_Social')">⬇ CSV</button>
+        <button class="btn-secondary" onclick="clearTab('social')">✕ Clear</button>
+      </div>
+    </div>
+    <div class="notice n-red" id="empty-social">No content yet. Go to Generate tab and click Generate Social Media.</div>
+    <div class="tbl-wrap" id="wrap-social" style="display:none">
+      <table id="tbl-social">
+        <thead><tr>
+          <th class="col-date">Date</th>
+          <th class="col-day">Day</th>
+          <th class="col-time">Time</th>
+          <th class="col-platform">Platform</th>
+          <th class="col-type">Type</th>
+          <th class="col-content">Content / Caption</th>
+          <th class="col-hashtags">Hashtags</th>
+          <th class="col-cta">CTA</th>
+          <th class="col-canva">Canva AI Prompt</th>
+          <th class="col-video">Video Prompt</th>
+          <th class="col-bv">Preeti ✓</th>
+          <th class="col-bv">Nikita ✓</th>
+          <th class="col-status">Status</th>
+        </tr></thead>
+        <tbody id="body-social"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ════ WHATSAPP TAB ════ -->
+  <div class="tabpanel" id="tab-whatsapp">
+    <div class="out-header">
+      <div class="out-title">💬 WhatsApp Universe</div>
+      <div class="out-actions">
+        <button class="btn-csv" onclick="dlCSV('tbl-wa','SHELeads_WhatsApp')">⬇ CSV</button>
+        <button class="btn-secondary" onclick="clearTab('wa')">✕ Clear</button>
+      </div>
+    </div>
+    <div class="notice n-red" id="empty-wa">No content yet. Go to Generate tab and click Generate WhatsApp.</div>
+    <div class="tbl-wrap" id="wrap-wa" style="display:none">
+      <table id="tbl-wa">
+        <thead><tr>
+          <th class="col-date">Date</th>
+          <th class="col-day">Day</th>
+          <th class="col-time">Time</th>
+          <th class="col-type">Message Type</th>
+          <th class="col-content" style="min-width:340px">Message</th>
+          <th class="col-bv">Preeti ✓</th>
+          <th class="col-bv">Nikita ✓</th>
+          <th class="col-status">Status</th>
+        </tr></thead>
+        <tbody id="body-wa"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ════ PAID MEMBERS WHATSAPP TAB ════ -->
+  <div class="tabpanel" id="tab-paid-wa">
+    <div class="out-header">
+      <div class="out-title">💎 Paid Members WhatsApp — Women Entrepreneurs Group</div>
+      <div class="out-actions">
+        <button class="btn-csv" onclick="dlCSV('tbl-pm','SHELeads_PaidMembers')">⬇ CSV</button>
+        <button class="btn-secondary" onclick="clearTab('pm')">✕ Clear</button>
+      </div>
+    </div>
+    <div class="notice n-green" style="margin-bottom:10px"><strong>This is for paid SHELeadsIndia members only.</strong> These women have invested ₹2,600 to be here. Messages are short (2–3 lines), premium, value-only. No selling — they've already bought. Tone: mentor texting a trusted student. Advanced, exclusive, accountable.</div>
+    <div class="notice n-red" id="empty-pm">No content yet. Go to Generate tab and click Generate Paid Members WhatsApp.</div>
+    <div class="tbl-wrap" id="wrap-pm" style="display:none">
+      <table id="tbl-pm">
+        <thead><tr>
+          <th class="col-date">Date</th>
+          <th class="col-day">Day</th>
+          <th class="col-time">Time</th>
+          <th class="col-type">Message Type</th>
+          <th class="col-content" style="min-width:300px">Message (2–3 lines max)</th>
+          <th class="col-bv">Preeti ✓</th>
+          <th class="col-bv">Nikita ✓</th>
+          <th class="col-status">Status</th>
+        </tr></thead>
+        <tbody id="body-pm"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ════ NEWSLETTER TAB ════ -->
+  <div class="tabpanel" id="tab-newsletter">
+    <div class="out-header">
+      <div class="out-title">📧 Newsletter — ABCD System</div>
+      <div class="out-actions">
+        <button class="btn-csv" onclick="dlCSV('tbl-nl','SHELeads_Newsletter')">⬇ CSV</button>
+        <button class="btn-secondary" onclick="clearTab('nl')">✕ Clear</button>
+      </div>
+    </div>
+    <div class="notice n-amber" style="margin-bottom:10px"><strong>ABCD System:</strong> A = App of the week · B = Business inspiration · C = Concept of the week · D = Digital strategy case study. Nikita must rewrite her personal note in her own words before sending.</div>
+    <div class="notice n-red" id="empty-nl">No content yet. Go to Generate tab and click Generate Newsletter.</div>
+    <div class="tbl-wrap" id="wrap-nl" style="display:none">
+      <table id="tbl-nl">
+        <thead><tr>
+          <th>Edition</th>
+          <th>Send Date</th>
+          <th>Section</th>
+          <th class="col-content" style="min-width:360px">Content</th>
+          <th class="col-bv">Preeti ✓</th>
+          <th class="col-bv">Nikita ✓</th>
+          <th class="col-status">Status</th>
+        </tr></thead>
+        <tbody id="body-nl"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ════ BLOG TAB ════ -->
+  <div class="tabpanel" id="tab-blog">
+    <div class="out-header">
+      <div class="out-title">✍️ Blog Sheet</div>
+      <div class="out-actions">
+        <button class="btn-csv" onclick="dlCSV('tbl-blog','SHELeads_Blog')">⬇ CSV</button>
+        <button class="btn-secondary" onclick="clearTab('blog')">✕ Clear</button>
+      </div>
+    </div>
+    <div class="notice n-red" id="empty-blog">No content yet. Go to Generate tab and click Generate Blog.</div>
+    <div class="tbl-wrap" id="wrap-blog" style="display:none">
+      <table id="tbl-blog">
+        <thead><tr>
+          <th>Publish Date</th>
+          <th>Post Title</th>
+          <th>Section</th>
+          <th class="col-content" style="min-width:360px">Content</th>
+          <th>SEO Keyword</th>
+          <th class="col-bv">Preeti ✓</th>
+          <th class="col-bv">Nikita ✓</th>
+          <th class="col-status">Status</th>
+        </tr></thead>
+        <tbody id="body-blog"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ════ GOALS TRACKER TAB ════ -->
+  <div class="tabpanel" id="tab-goals-view">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+      <div>
+        <div class="page-title">Monthly Goals Tracker</div>
+        <div style="font-size:12px;color:var(--muted)" id="goals-month-label">Goals set for March 2026 — focus: engagment on social media</div>
+      </div>
+      <button class="btn-dark" onclick="openGoals()">Edit / Set Goals</button>
+    </div>
+    <div id="goals-display"><div class="goals-grid"><div class="goal-card"><div class="gc-label">Revenue (₹)</div>
+      <div class="gc-val">₹25,000</div>
+      <div class="gc-sub">Target | Last month: ₹5,200</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+₹19,800 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">₹99 Audit sales</div>
+      <div class="gc-val">3</div>
+      <div class="gc-sub">Target | Last month: 0</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+3 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">Membership sign-ups</div>
+      <div class="gc-val">5</div>
+      <div class="gc-sub">Target | Last month: 0</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+5 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">Implementation attendees</div>
+      <div class="gc-val">6</div>
+      <div class="gc-sub">Target | Last month: 0</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+6 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">AI Programme enrolments</div>
+      <div class="gc-val">5</div>
+      <div class="gc-sub">Target | Last month: 0</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+5 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">1:1 Mentoring clients</div>
+      <div class="gc-val">5</div>
+      <div class="gc-sub">Target | Last month: 0</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+5 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">Newsletter subscribers</div>
+      <div class="gc-val">25</div>
+      <div class="gc-sub">Target | Last month: 25</div>
+      <div class="gap-good" style="font-size:11px;margin-top:4px">✓ exceeded</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div><div class="goal-card"><div class="gc-label">Blog sessions</div>
+      <div class="gc-val">30</div>
+      <div class="gc-sub">Target | Last month: 2</div>
+      <div class="gap-bad" style="font-size:11px;margin-top:4px">+28 needed</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div></div></div></div>
+    <div id="goals-analysis" style="display: block; margin-top: 16px;">
+      <div class="slabel">Claude's analysis</div>
+      <div id="goals-analysis-content" class="card" style="font-size:12px;line-height:1.8;white-space:pre-wrap">EXECUTIVE SUMMARY
+
+February was essentially a launch month with minimal traction—₹5200 revenue, zero conversions across paid products, and only 25 newsletter subscribers. March targets are 5x revenue growth with concrete product sales across every tier, which means content must shift from awareness-building to urgency-driven conversion, especially around Implementation sessions and the AI Programme where we have zero baseline.
+
+TOP 3 PRIORITIES THIS MONTH
+
+1. Drive Implementation session attendance to 6 paid bookings by positioning Friday sessions as the fastest path to visible marketing results. Every Friday reel or post must feature a specific win from a past attendee (even if reconstructed from testimonials) with direct CTA to book the free trial or paid session.
+
+2. Activate the 25 existing newsletter subscribers into membership and audit buyers by creating exclusive email sequences that position annual membership as the unlock for consistent access. Launch a 48-hour flash offer (₹2,300 or similar) timed to Tuesday training completion when engagement is highest.
+
+3. Build momentum on the AI Programme sales (target 5) by using Wednesday image posts and Tuesday training reels to show real MarTech + AI workflows in action. Include friction-free entry: first module free, then ₹X for full 90 hours, clearly stated in every post.
+
+CONTENT ALIGNMENT
+
+The biggest gap is zero conversions on high-ticket items despite non-zero audience. This means content has been informational, not transactional. Swap the mix: reduce abstract value prop posts. Every Monday newsletter tease must now link to a specific product offer dropping that week. Tuesday training reels shift from "learn this concept" to "here's how Priya from Bangalore used this to fix her funnel—join live to ask her questions." Friday Implementation content must show before/after or a specific metric gained. Saturday carousel spotlights must include "she was a member when she booked her first audit" or similar product-to-result connection.
+
+RISK TO WATCH
+
+If engagement stays high but conversion stays at zero through mid-March, it signals audience is there for free content only and paid positioning or product-market fit may need rework before spending more on reach.</div>
+    </div>
+  </div>
+
+</div><!-- end wrap -->
+
+<!-- GOALS MODAL -->
+<div class="modal-ov" id="goalsModal">
+  <div class="modal">
+    <div class="modal-title">🎯 Monthly Goals</div>
+    <div class="modal-sub" id="goals-modal-sub">Set goals for this month. These lock in and won't be asked again until the 1st of next month. Claude uses these when generating content to align everything to your business targets.</div>
+
+    <div class="slabel">Which month are you setting goals for?</div>
+    <div class="form-grid" style="margin-bottom:16px">
+      <div class="field">
+        <label>Month</label>
+        <select id="g-month">
+          <option>March 2026</option><option>April 2026</option><option>May 2026</option>
+          <option>June 2026</option><option>July 2026</option><option>August 2026</option>
+          <option>September 2026</option><option>October 2026</option><option>November 2026</option>
+          <option>December 2026</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Main focus this month</label>
+        <input type="text" id="g-focus" placeholder="e.g. Growing membership, launching AI programme...">
+      </div>
+    </div>
+
+    <div class="slabel">Last month's actuals</div>
+    <div class="form-grid" style="margin-bottom:4px">
+      <div class="field"><label>Revenue earned (₹)</label><input type="text" id="ga-rev" placeholder="e.g. 45000"></div>
+      <div class="field"><label>₹99 Audit sales</label><input type="number" id="ga-audit" placeholder="e.g. 12"></div>
+      <div class="field"><label>Membership sign-ups</label><input type="number" id="ga-mem" placeholder="e.g. 18"></div>
+      <div class="field"><label>Implementation session attendees</label><input type="number" id="ga-impl" placeholder="e.g. 25"></div>
+      <div class="field"><label>AI Programme enrolments</label><input type="number" id="ga-prog" placeholder="e.g. 2"></div>
+      <div class="field"><label>1:1 Mentoring clients</label><input type="number" id="ga-ment" placeholder="e.g. 1"></div>
+      <div class="field"><label>Newsletter subscribers</label><input type="number" id="ga-nl" placeholder="e.g. 320"></div>
+      <div class="field"><label>Blog sessions</label><input type="number" id="ga-blog" placeholder="e.g. 480"></div>
+    </div>
+
+    <div class="slabel" style="margin-top:16px">This month's targets</div>
+    <div class="form-grid">
+      <div class="field"><label>Revenue target (₹)</label><input type="text" id="gt-rev" placeholder="e.g. 70000"></div>
+      <div class="field"><label>₹99 Audit target</label><input type="number" id="gt-audit" placeholder="e.g. 20"></div>
+      <div class="field"><label>Membership sign-up target</label><input type="number" id="gt-mem" placeholder="e.g. 30"></div>
+      <div class="field"><label>Implementation attendees target</label><input type="number" id="gt-impl" placeholder="e.g. 35"></div>
+      <div class="field"><label>AI Programme target</label><input type="number" id="gt-prog" placeholder="e.g. 4"></div>
+      <div class="field"><label>Mentoring clients target</label><input type="number" id="gt-ment" placeholder="e.g. 2"></div>
+      <div class="field"><label>Newsletter subs target</label><input type="number" id="gt-nl" placeholder="e.g. 400"></div>
+      <div class="field"><label>Blog sessions target</label><input type="number" id="gt-blog" placeholder="e.g. 700"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeGoals()">Cancel</button>
+      <button class="btn-primary" id="goals-save-btn" onclick="saveGoals()">
+        <div class="spin"></div><span>Save Goals + Generate Analysis</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════
+// MASTER BRIEF — baked in, never re-explained
+// ════════════════════════════════════════════════
+const BRIEF = `
+ABOUT SHELEADSINDIA:
+SHELeadsIndia (SLI) is a membership community and learning platform teaching Digital Marketing, AI, and MarTech to women entrepreneurs in India. Founded by Nikita Vora. "Where learning meets execution with intent and integrity." Starter membership Rs.2,600/yr includes 52 weekly live sessions, AI tools access, peer community. Growth (Rs.25,000/yr) adds cohort mentorship. Elite (Rs.75,000/yr) adds 1:1 monthly calls, investor networking, priority support.
+
+OUR WOMAN (the person we write for):
+Age 25-52. Running a home-based business, solo service, or small offline/online business. Cities: Pune, Mumbai, Nashik, Nagpur, Ahmedabad, Surat, Delhi, Bangalore, Hyderabad, Jaipur and similar. She juggles business + home + family every single day — and she does it brilliantly. She wants to grow but feels left behind on technology. She has said (or thought): "I am not tech-savvy enough for AI." She Googles things at midnight. She second-guesses her prices. She has been told to stay small. She is brilliant but underestimated — sometimes even by herself. She knows digital marketing matters but does not know where to start. She craves community — women who get it without explanation. She has tried courses that gave theory but no results. She wants action, community, and confidence — in that order.
+
+CONTENT PHILOSOPHY — THE SHE TEST:
+Before writing any line, ask: Would SHE stop scrolling for this? Would SHE share it in her WhatsApp group? Would SHE DM us saying "this is me"? If no to any — rewrite it. Lead with her pain, her daily struggle, her unspoken question. Then deliver the insight. Always write as SHELeadsIndia (the community/brand) — never as an individual. Use "you" when speaking to her, "she" when describing her, "we" when talking about SHELeadsIndia. Never use "I/me/my".
+
+PLATFORM TONE GUIDE:
+Instagram Feed: Open with her relatable struggle or a bold truth. Build to insight. End with a genuine question she will want to answer. Warm, real, community-driven. 120-200 chars caption body + 5-8 relevant hashtags.
+Instagram Reel/Stories: Casual, direct, like texting a friend. Quick value or action. Very short.
+Twitter/X: The organisation speaking as thought-leader. Bold truth-bomb for Indian women founders. Under 220 chars. Punchy. 1 emoji max. No fluff.
+LinkedIn: Professional but personal. Longer narrative. Lead with an outcome or member story. Inspire women AND attract corporate / partner audience.
+Pinterest: Aspirational + search-optimised. "How to" angle. Describe visuals clearly for Canva creation.
+Google My Business: Trust-building, local, practical. Short and informative.
+WhatsApp Community: Like a warm, knowledgeable friend sending a daily nudge. Short. Immediate value.
+WhatsApp Paid Members: Ultra-premium. Pure insight, zero selling. 2-3 lines only. Make her feel the membership is worth 10x what she paid.
+Newsletter (Monday): She reads this with her morning chai. ABCD format: A=App of the week, B=Business inspiration story, C=Concept explained simply, D=Digital strategy case study. Each section should feel like a mini-lesson from a brilliant friend.
+Blog: First-person story opening ("Many of our members have felt..."), build to insight, end with SLI approach + CTA. SEO-optimised, 900-1100 words. Relatable title that sounds like a real thought, not a keyword.
+`;
+
+const TRAINING_TOPICS = {
+  'March': ['Designing a simple business card on Canva','How to use green screen for your videos','Using Google Forms to get customer details','Seeing which of your posts made actual sales','Creating a PDF Checklist to give to customers'],
+  'April': ['Making a professional presentation/pitch','How to add trending music and voiceovers','Using Linktree to organize all your links','Learning where your website visitors come from'],
+  'May': ['Designing WhatsApp Status images that sell','How to Remove Backgrounds from photos/videos','Using Bitly to shorten and track your links','Checking if your Ad money is being spent well'],
+  'June': ['Making a YouTube thumbnail that gets clicks','How to color correct dark or dull videos','Using Meta Business Suite to schedule posts','Mid-year review: most liked vs least liked posts','Making a simple E-catalogue for your products'],
+  'July': ['Creating your own birthday/offer post for your business','Making voiceover reels (speak while showing your work)','Using Google Keep to save your content ideas','Finding out which time of day your followers are most active'],
+  'August': ['Designing an About Me page for your brand','How to make before and after transition videos','Using CapCut Desktop for easier video making','Seeing which cities your customers are coming from'],
+  'September': ['Making a price list/menu for your services','Using AI to change your video background easily','Setting up a Bio-Site (one link for everything)','Understanding why people unfollow or stop watching','Making a Thank You card for your customers'],
+  'October': ['Designing festival posts (Diwali/Navratri) in 10 mins','Making gift guide videos for your products','Using Magic Eraser to clean up your product photos','Tracking your deepest reach during the festive season'],
+  'November': ['Making a Year in Review graphic for your fans','Creating a cinematic video of your workspace','Using Claude AI to plan your 2027 goals','Calculating your total sales vs your effort'],
+  'December': ['Designing a 2027 Vision Board for your business','How to archive and organize your old videos','Setting up auto-replies for when you are on holiday','Looking at your best post of the year and why it worked','Making a digital calendar for your customers']
+};
+
+const PRODUCTS = [
+  {name:'Annual Membership',price:'₹2,600/year',cta:'Reply MEMBER to join →'},
+  {name:'Digital Marketing Audit',price:'₹99',cta:'Reply AUDIT for details →'},
+  {name:'AI + Digital Marketing Programme',price:'90-hour programme',cta:'Reply PROGRAMME for details →'},
+  {name:'Implementation Session',price:'₹299/session',cta:'Reply IMPL to register →'},
+  {name:'1:1 Mentoring with Nikita',price:'Premium — limited spots',cta:'Reply MENTORING to apply →'}
+];
+
+const IG_HASH = '#WomenEntrepreneurs #SHELeadsIndia #WomenFounders #WomenInBusiness #IndianWomenEntrepreneurs #DigitalMarketing #AIForBusiness #MarTech #StartupIndia #WomenStartups';
+const LI_HASH = '#WomenEntrepreneurs #WomenInBusiness #SHELeadsIndia #DigitalMarketing #WomenFounders #StartupIndia #MarTech';
+const PIN_HASH = '#WomenEntrepreneurs #WomenBusiness #WomenFounders #BusinessTips #DigitalMarketingTips #WomenEmpowerment #IndiaStartup #SHELeadsIndia';
+const TW_HASH = '#WomenEntrepreneurs #SHELeadsIndia #WomenFounders #DigitalMarketing';
+
+// ════ API ════
+let API_KEY = localStorage.getItem('sli_key') || '';
+function updateApiUI(){
+  const d=document.getElementById('apiDot'),l=document.getElementById('apiLabel');
+  const p=document.getElementById('apiPanel');
+  if(API_KEY&&API_KEY.startsWith('sk-ant-')){d.className='dot ok';l.textContent='API Key Set ✓';p.classList.remove('show');}
+  else{d.className='dot';l.textContent='Set API Key';p.classList.add('show');}
+}
+function toggleApi(){document.getElementById('apiPanel').classList.toggle('show');}
+function saveKey(){
+  const v=document.getElementById('apiInput').value.trim();
+  if(!v.startsWith('sk-ant-')){toast('Key must start with sk-ant-','err');return;}
+  API_KEY=v;localStorage.setItem('sli_key',API_KEY);updateApiUI();toast('API key saved ✓','ok');
+}
+updateApiUI();
+
+// ════ TABS ════
+function showTab(id,el){
+  document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ════ PHOTOS ════
+function addPhoto(){
+  const li=document.getElementById('photoList');
+  const row=document.createElement('div');row.className='photo-row';
+  row.innerHTML=`<input type="text" placeholder="Google Drive shareable link (photo)"><input type="text" placeholder="Describe this photo/video in 1–2 lines"><button class="remove-btn" onclick="removePhoto(this)">Remove</button>`;
+  li.appendChild(row);
+}
+function removePhoto(btn){btn.closest('.photo-row').remove();}
+function getPhotos(){
+  const rows=document.querySelectorAll('#photoList .photo-row');
+  return Array.from(rows).map(r=>{
+    const inputs=r.querySelectorAll('input');
+    return{link:inputs[0].value.trim(),desc:inputs[1].value.trim()};
+  }).filter(p=>p.link||p.desc);
+}
+function photosToGDirect(link){
+  // Convert drive shareable link to direct image URL
+  const m=link.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if(m)return`https://drive.google.com/uc?export=view&id=${m[1]}`;
+  return link;
+}
+
+// ════ CLAUDE API ════
+async function claude(prompt,maxTok=500,imgUrl=null){
+  if(!API_KEY)throw new Error('No API key set');
+  const msgContent=imgUrl
+    ?[{type:'image',source:{type:'url',url:imgUrl}},{type:'text',text:prompt}]
+    :[{type:'text',text:prompt}];
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTok,messages:[{role:'user',content:msgContent}]})
+  });
+  const d=await r.json();
+  if(d.error)throw new Error(d.error.message);
+  return d.content[0].text.trim();
+}
+
+// ════ HELPERS ════
+function fmtDate(d){return d.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'});}
+function dayName(d){return d.toLocaleDateString('en-US',{weekday:'long'});}
+function getDays(n){const a=[];for(let i=0;i<n;i++){const d=new Date();d.setDate(d.getDate()+i);a.push(d);}return a;}
+
+function setProg(id,pct,label){
+  document.getElementById('pg-'+id).classList.toggle('show',pct>0&&pct<100);
+  document.getElementById('pf-'+id).style.width=pct+'%';
+  document.getElementById('pl-'+id).textContent=label;
+}
+function setBtnLoad(id,on){
+  const b=document.getElementById('gbtn-'+id);b.disabled=on;b.classList.toggle('loading',on);
+}
+
+function pbadge(p){
+  const m={'Instagram Feed':'p-ig','Instagram Stories':'p-story','LinkedIn':'p-li','Pinterest':'p-pin','Google My Business':'p-gmb','Twitter':'p-tw','WhatsApp':'p-wa','Newsletter':'p-nl','Blog':'p-blog'};
+  return`<span class="pbadge ${m[p]||'p-ig'}">${p}</span>`;
+}
+
+function spill(init=0){
+  const labels=['🔴 Draft','🟡 Preeti Reviewed','🔵 Nikita Approved','🟣 Scheduled','🟢 Posted'];
+  const cls=['s0','s1','s2','s3','s4'];
+  let c=init;
+  const span=document.createElement('span');
+  span.className='spill '+cls[c];span.textContent=labels[c];
+  span.onclick=()=>{c=(c+1)%5;span.className='spill '+cls[c];span.textContent=labels[c];};
+  return span;
+}
+
+function bvBtn(type){
+  const btn=document.createElement('button');
+  btn.className='bv-btn';btn.textContent=type==='P'?'✓ Preeti':'✓ Nikita';
+  btn.onclick=()=>{
+    const on=!btn.classList.contains(type==='P'?'cp':'cn');
+    btn.classList.toggle(type==='P'?'cp':'cn',on);
+    btn.textContent=on?(type==='P'?'✅ Preeti':'✅ Nikita'):(type==='P'?'✓ Preeti':'✓ Nikita');
+  };return btn;
+}
+
+function addSocialRow(tbodyId,cells){
+  // cells: [date,day,time,platform,type,content,hashtags,cta,canva,video]
+  const tbody=document.getElementById(tbodyId);
+  const tr=document.createElement('tr');
+  const colCls=['col-date','col-day','col-time','col-platform','col-type','col-content','col-hashtags','col-cta','col-canva','col-video'];
+  cells.forEach((c,i)=>{
+    const td=document.createElement('td');td.className=colCls[i]||'';
+    if(i===3){td.innerHTML=pbadge(c);}
+    else if(typeof c==='string'){td.textContent=c;}
+    else{td.appendChild(c);}
+    tr.appendChild(td);
+  });
+  // BV + status
+  const bvP=document.createElement('td');bvP.className='col-bv';bvP.appendChild(bvBtn('P'));tr.appendChild(bvP);
+  const bvN=document.createElement('td');bvN.className='col-bv';bvN.appendChild(bvBtn('N'));tr.appendChild(bvN);
+  const st=document.createElement('td');st.className='col-status';st.appendChild(spill());tr.appendChild(st);
+  tbody.appendChild(tr);
+}
+
+function addWARow(cells){
+  const tbody=document.getElementById('body-wa');
+  const tr=document.createElement('tr');
+  ['col-date','col-day','col-time','col-type','col-content'].forEach((cls,i)=>{
+    const td=document.createElement('td');td.className=cls;td.textContent=cells[i];tr.appendChild(td);
+  });
+  const bvP=document.createElement('td');bvP.className='col-bv';bvP.appendChild(bvBtn('P'));tr.appendChild(bvP);
+  const bvN=document.createElement('td');bvN.className='col-bv';bvN.appendChild(bvBtn('N'));tr.appendChild(bvN);
+  const st=document.createElement('td');st.className='col-status';st.appendChild(spill());tr.appendChild(st);
+  tbody.appendChild(tr);
+}
+
+function showTable(id){
+  document.getElementById('empty-'+id).style.display='none';
+  document.getElementById('wrap-'+id).style.display='block';
+}
+
+function clearTab(id){
+  const tbody=document.getElementById('body-'+id);if(tbody)tbody.innerHTML='';
+  document.getElementById('empty-'+id).style.display='block';
+  document.getElementById('wrap-'+id).style.display='none';
+}
+
+function toast(msg,type=''){
+  const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;
+  setTimeout(()=>t.className='toast',3200);
+}
+
+function getGoals(){return JSON.parse(localStorage.getItem('sli_goals')||'null');}
+
+function getBriefContext(){
+  const month=document.getElementById('f-month').value;
+  const week=document.getElementById('f-week').value;
+  const guest=document.getElementById('f-guest').value||'Guest TBC';
+  const guestLink=document.getElementById('f-guest-link').value||'';
+  const guestBio=document.getElementById('f-guest-bio').value||'';
+  const trainer=document.getElementById('f-trainer').value||'Nikita Vora';
+  const trainerBio=document.getElementById('f-trainer-bio').value||'';
+  const event=document.getElementById('f-event').value||'None';
+  const topics=TRAINING_TOPICS[month]||[];
+  const weekIdx=parseInt(week)-1;
+  const thisTopic=topics[weekIdx]||topics[0]||'Digital marketing tools for women entrepreneurs';
+  const goals=getGoals();
+  const goalsStr=goals?`Monthly goals: Revenue ₹${goals.targets.rev}, Membership ${goals.targets.mem} sign-ups, Audit ${goals.targets.audit} sales, AI Programme ${goals.targets.prog} enrolments. Focus: ${goals.focus}.`:'No goals set yet.';
+
+  // Build personalised guest context
+  const guestCtx=guestBio
+    ?`Thursday podcast guest: ${guest}. About them: ${guestBio}.${guestLink?' Social: '+guestLink:''}`
+    :`Thursday podcast guest: ${guest}.`;
+  const trainerCtx=trainerBio
+    ?`Tuesday trainer: ${trainer}. About them: ${trainerBio}.`
+    :`Tuesday trainer: ${trainer}.`;
+
+  return{month,week,guest,guestLink,guestBio,guestCtx,trainer,trainerBio,trainerCtx,event,thisTopic,goalsStr,topics};
+}
+
+// ════════════════════════════════════════════════
+// SOCIAL MEDIA GENERATOR
+// ════════════════════════════════════════════════
+async function genSocial(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  setBtnLoad('s',true);
+  document.getElementById('body-social').innerHTML='';
+  const days=getDays(15);
+  const photos=getPhotos();
+  const{month,week,guest,event,thisTopic,goalsStr}=getBriefContext();
+  let prodIdx=0,total=0,done=0;
+
+  // Count approximate total calls
+  days.forEach(d=>{const dn=dayName(d);total+=(['Monday','Wednesday','Saturday'].includes(dn)?2:['Tuesday','Friday'].includes(dn)?3:['Thursday'].includes(dn)?1:['Sunday'].includes(dn)?2:2);});
+
+  try{
+    for(let i=0;i<days.length;i++){
+      const d=days[i];
+      const date=fmtDate(d);const day=dayName(d);
+      const prod=PRODUCTS[prodIdx%PRODUCTS.length];
+      const wk=Math.floor(i/7)+1;
+      const photo=photos[i%Math.max(photos.length,1)];
+      const photoCtx=photo?(photo.desc?`Use this real photo/context: "${photo.desc}". Photo link: ${photo.link}`:''):'';
+      const sellThis=i%3===2;// sell on every 3rd day
+
+      setProg('s',Math.round((done/total)*90),`Generating ${day} ${date}...`);
+
+      const base=`${BRIEF}\nMonth: ${month}, Week ${week}. This Tuesday's training topic: "${thisTopic}". ${trainerCtx} ${guestCtx} Special event: ${event}. ${goalsStr}\n`;
+
+      if(day==='Monday'){
+        // Quote/text post — newsletter tease
+        const cap=await claude(`${base}Write an Instagram single-image caption for Monday teasing today's newsletter. Open with a relatable struggle our woman faces right now — overwhelm, self-doubt, tech fear, or hustle fatigue. Make her feel understood in the first line. Then promise that today's newsletter has exactly what she needs. Create genuine curiosity — not hype. SHELeadsIndia's voice. Write as the brand — never as an individual. SHELeadsIndia speaks TO Indian women entrepreneurs, not about one person. Her world: she's running a business AND managing a home. She Googles things at midnight. She second-guesses her prices. Tech feels overwhelming but she knows she can't ignore it. She's brilliant but underestimated. She wants to grow — without burning out. Write in warm, direct, conversational Indian English. Like a knowledgeable friend who truly gets it. Make her think: "this was written for ME." Avoid corporate jargon. Use "she/her" or "you" — never "I/me/my" (you are not an individual, you are a community). Every line must earn its place. Reference the newsletter going out today. ${sellThis?`Softly mention ${prod.name} (${prod.price}).`:''} End with one question. 100–130 words. Plain text only. No hashtags.`,300);
+        const canva=`Canva prompt: Single image 1080x1080px. Quote text centred on cream background #EDE8E0. Dark brown #5C3D2E bold headline. Red accent line. SHELeads logo bottom right. Export PNG.`;
+        addSocialRow('body-social',[date,day,'7:00 AM','Instagram Feed','Quote Post',cap,IG_HASH,sellThis?prod.cta:'',canva,'']);
+
+        const li=await claude(`${base}Write a LinkedIn post as Nikita Vora for Monday. Newsletter is out today — reference the topic of this week's training ("${thisTopic}"). ${sellThis?`Soft mention of ${prod.name}.`:''} Hook in line 1. Real story. End with question. 180–210 words. Plain text. 5 hashtags at end only.`,400);
+        addSocialRow('body-social',[date,day,'8:00 AM','LinkedIn','Post',li,LI_HASH,sellThis?prod.cta:'','','']);
+        prodIdx++;done+=2;
+      }
+
+      else if(day==='Tuesday'){
+        // Reel brief — training day
+        const reel=await claude(`${base}Write a 30-second Reel script brief for Instagram on Tuesday Training day. Topic today: "${thisTopic}". Energy: excited, behind-the-scenes feel. 0-3s hook. 3-25s: what they'll learn today. 25-30s: CTA to join (${prod.name}). SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. Plain text. Also write text overlay cues.`,300);
+        const capcut=`CapCut brief: Import talking-head video. Add auto-captions (DM Sans font, white text dark bg). Text overlays for each point in red. SHELeads watermark bottom right 70% opacity. End frame "Join SHELeads India" cream bg red text 3s. Export 1080x1920 30fps MP4.`;
+        const canva=`Canva Reel cover 1080x1920px: Bold topic title in white on dark brown top third. Middle: space for training screenshot. Bottom: SHELeads red accent bar + logo. Export JPG.`;
+        addSocialRow('body-social',[date,day,'9:00 AM','Instagram Feed','Reel',reel,IG_HASH,prod.cta,canva,capcut]);
+
+        const li=await claude(`${base}Write a LinkedIn post for Tuesday. Training is LIVE today on "${thisTopic}". Create urgency to join — sessions are happening now. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. 150–180 words. Plain text. 5 hashtags.`,300);
+        addSocialRow('body-social',[date,day,'9:00 AM','LinkedIn','Training Live Post',li,LI_HASH,prod.cta,'','']);
+
+        const story=await claude(`${base}Write a Tuesday Training Instagram Story brief. Type: Training Day Countdown/Reminder. Text overlay (max 8 words). Sticker to use. Training topic: "${thisTopic}". Plain text only. 2–3 lines.`,100);
+        const scanva=`Story 1080x1920px: Red bg, bold "Training Today" white text top. Topic name in cream. Countdown sticker. SHELeads logo. Keep text in safe zone (250px from top/bottom).`;
+        addSocialRow('body-social',[date,day,'8:00 AM','Instagram Stories','Training Reminder',story,'','',scanva,'']);
+        done+=3;
+      }
+
+      else if(day==='Wednesday'){
+        // Real photo post
+        let cap,canva;
+        if(photo&&photo.desc){
+          cap=await claude(`${base}Write an Instagram caption for Wednesday inspired by this real photo/moment from SHELeads India: "${photo.desc}". Make the caption feel authentic and human. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. ${sellThis?`Soft mention of ${prod.name}.`:''} 120–150 words. Plain text. No hashtags.`,300,photo.link?photosToGDirect(photo.link):null);
+          canva=`Use the real photo provided. Minimal text overlay — just the SHELeads watermark bottom right. Let the photo speak. Export 1080x1080px PNG.`;
+        }else{
+          cap=await claude(`${base}Write an Instagram single-image caption for Wednesday. Value-driven, grounded in Indian women entrepreneur reality. ${sellThis?`Soft mention of ${prod.name}.`:''} 120–150 words. Plain text. No hashtags.`,300);
+          canva=`Canva 1080x1080px: Warm cream bg. Short value quote in dark brown. Red accent element. SHELeads logo. Export PNG.`;
+        }
+        addSocialRow('body-social',[date,day,'12:00 PM','Instagram Feed','Photo Post',cap,IG_HASH,sellThis?prod.cta:'',canva,'']);
+
+        const pin=await claude(`${base}Write a Pinterest pin for Wednesday. Type: Tip List. Title (max 100 chars, keyword-rich for SEO). Description (200–250 chars, searchable). Focus: ${thisTopic} or women entrepreneur digital marketing. Format: TITLE: ... then DESCRIPTION: ...`,200);
+        const pinCanva=`Pinterest 1000x1500px: Cream bg, dark brown numbered list (01 02 03), red accents, SHELeads logo bottom, website URL. Export PNG.`;
+        addSocialRow('body-social',[date,day,'9:00 PM','Pinterest','Tip List',pin,PIN_HASH,'',pinCanva,'']);
+        done+=2;
+      }
+
+      else if(day==='Thursday'){
+        // Podcast drop — story only on feed, announce everywhere
+        const story=await claude(`${base}Write a Thursday Podcast Instagram Story brief. Guest: ${guest}. Type: Podcast Drop Announcement. Text overlay (max 8 words). Sticker: countdown or poll. Plain text. 2–3 lines.`,120);
+        const scanva=`Story 1080x1920px: Dark brown bg, "New Podcast" in red top. Guest name bold cream centre. "Listen now" red CTA button shape bottom. SHELeads logo. Safe zone respected.`;
+        addSocialRow('body-social',[date,day,'10:00 AM','Instagram Stories','Podcast Drop',story,'','',scanva,'']);
+
+        const li=await claude(`${base}Write a LinkedIn post announcing today's podcast episode with guest ${guest}. What would a listener gain? SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. 150–180 words. End with link placeholder [PODCAST LINK]. Plain text. 5 hashtags.`,300);
+        addSocialRow('body-social',[date,day,'10:00 AM','LinkedIn','Podcast Announcement',li,LI_HASH,'','','']);
+        done+=2;
+      }
+
+      else if(day==='Friday'){
+        // Implementation day — drive attendance
+        const reel=await claude(`${base}Write a 30-second Reel script brief for Friday Implementation Day. ₹299/session. What will members actually implement today — connected to "${thisTopic}". Urgency. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. Text overlay cues included. Plain text.`,250);
+        const capcut2=`CapCut brief: Energy edit — fast cuts. Bold text overlays "DO IT TODAY". Auto-captions. SHELeads watermark. Background music: motivational at 15%. End frame: "₹299 only — Reply IMPL". 1080x1920 MP4.`;
+        const canva2=`Canva Reel cover 1080x1920px: Bold "Implementation Day" red text on dark brown. "₹299 per session" cream subtitle. SHELeads logo. Export JPG.`;
+        addSocialRow('body-social',[date,day,'8:00 AM','Instagram Feed','Reel',reel,IG_HASH,'Reply IMPL to join →',canva2,capcut2]);
+
+        const gmb=await claude(`${base}Write a Google My Business What's New post for Friday. Professional but warm. Reference Implementation Day happening today (₹299). Include keyword: women entrepreneurs India, SHELeadsIndia. End with [website]. 120–140 words.`,250);
+        addSocialRow('body-social',[date,day,'9:00 AM','Google My Business','What\'s New',gmb,'','Reply IMPL →','','']);
+        done+=2;
+      }
+
+      else if(day==='Saturday'){
+        // Carousel — members spotlight (1 per week)
+        const car=await claude(`${base}Write an Instagram carousel caption for Saturday Members Spotlight. Invite community members to share their businesses. Warm, celebratory. ${sellThis?`Soft mention of ${prod.name}.`:''} 130–160 words. Plain text. No hashtags in caption body.`,300);
+        const carCanva=`Canva Carousel 1080x1080px 6 slides: Slide 1: "Your Turn to Shine" bold red on cream. Slides 2-5: member showcase template (name, business, one line). Slide 6: "Join SHELeads India" CTA. Export 6 PNGs.`;
+        addSocialRow('body-social',[date,day,'10:00 AM','Instagram Feed','Carousel (Members)',car,IG_HASH,sellThis?prod.cta:'',carCanva,'']);
+
+        const tw=await claude(`${base}Write a Saturday Twitter quote tweet for SHELeadsIndia. Direct, real, for women founders. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen. Under 200 chars. Pure value. No product mention.`,80);
+        addSocialRow('body-social',[date,day,'9:00 AM','Twitter','Quote Tweet',tw,TW_HASH,'','','']);
+        prodIdx++;done+=2;
+      }
+
+      else if(day==='Sunday'){
+        // Open promo
+        const img=await claude(`${base}Write an Instagram single-image caption for Sunday open promo day. Everyone in the community shares their business today. Warm, permission-giving. ${sellThis?`Soft mention of ${prod.name}.`:''} 110–140 words. Plain text. No hashtags in caption.`,280);
+        const sunCanva=`Canva 1080x1080px: "Open Promo Sunday" warm cream bg. Inviting headline dark brown. Red accent. SHELeads logo. Export PNG.`;
+        addSocialRow('body-social',[date,day,'9:00 AM','Instagram Feed','Open Promo',img,IG_HASH,sellThis?prod.cta:'',sunCanva,'']);
+
+        const pin=await claude(`${base}Write a Pinterest product pin for Sunday featuring ${prod.name} (${prod.price}). TITLE: (max 100 chars keyword-rich). DESCRIPTION: (200-250 chars, searchable, warm). Format: TITLE: ... then DESCRIPTION: ...`,200);
+        const pinC=`Pinterest Product Pin 1000x1500px: Product name bold top. 3 benefit bullets. Red CTA "Learn More →". SHELeads logo + URL. Export PNG.`;
+        addSocialRow('body-social',[date,day,'9:00 PM','Pinterest','Product Pin',pin,PIN_HASH,prod.cta,pinC,'']);
+        prodIdx++;done+=2;
+      }
+
+      setProg('s',Math.round((done/total)*95),`${done} pieces done...`);
+    }
+
+    setProg('s',100,'Done!');setTimeout(()=>setProg('s',0,''),1500);
+    showTable('social');showTab('social',document.querySelectorAll('.tn')[1]);
+    toast('Social Media sheet ready ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  setBtnLoad('s',false);
+}
+
+// ════════════════════════════════════════════════
+// WHATSAPP GENERATOR
+// ════════════════════════════════════════════════
+const WA_FIXED={
+  Tue_CTA:["Tomorrow is Tuesday Training.\n\nOne hour. Practical. Women only.\n\nThis week's topic: we're covering exactly what's been showing up in your questions. No fluff, no theory — just what you can use this week.\n\nWho's joining? Reply YES and I'll send you the link tonight.","Tuesday Training is tomorrow morning.\n\nEvery woman who shows up leaves with one thing she implements the same week. That's the whole point.\n\nAre you coming? Reply YES right now.", "Tomorrow — Tuesday Training. One hour. One practical skill you take straight into your business.\n\nSpace is limited. Reply YES and I'll send the link tonight."],
+  Tue_Today:["Tuesday Training is today.\n\nWe start soon. Reply YES right now and I'll send you the link immediately.","It's Tuesday Training day. One focused hour on something that will actually move your business.\n\nReply YES and I'll send the link straight to you.","Training today. No fluff. No theory. Just the one skill you need this week.\n\nReply YES for the link."],
+  Thu_Teaser:["Heads up for tomorrow.\n\nFriday is Implementation Day. Not a webinar. Not more to watch and forget.\n\nWe actually sit down and do the thing you've been putting off all week.\n\n₹299 only. Reply I'M IN and I'll send everything tonight.","Tomorrow is Implementation Day. The one marketing task sitting on your list all week — we finish it together.\n\n₹299. Reply I'M IN.","Friday Implementation Day tomorrow.\n\nOne hour. Bring your one thing. We do it together.\n\n₹299 per session. Reply I'M IN tonight."],
+  Fri_Impl:["Today is Implementation Day.\n\nYou know exactly what you've been putting off. We're doing it together right now.\n\n₹299. Reply I'M IN and I'll send the link immediately.","Implementation Day is today. Not more information. Just doing.\n\nBring your one marketing task. We finish it together.\n\n₹299. Reply I'M IN.","It's Implementation Day. The one thing on your list all week — today it gets done.\n\n₹299 only. Reply I'M IN."]
+};
+const waUsed={};
+function pickFixed(type){if(!waUsed[type])waUsed[type]=0;const t=WA_FIXED[type];return t[(waUsed[type]++)%t.length];}
+
+async function genWA(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  setBtnLoad('w',true);
+  document.getElementById('body-wa').innerHTML='';
+  const days=getDays(15);
+  const{month,week,guest,guestCtx,trainerCtx,event,thisTopic,goalsStr}=getBriefContext();
+  let prodIdx=0,done=0,total=45;
+
+  const base=`${BRIEF}\nMonth: ${month}, Week ${week}. Tuesday training topic: "${thisTopic}". ${trainerCtx} ${guestCtx} Special event: ${event}. ${goalsStr}\n`;
+
+  try{
+    for(let i=0;i<days.length;i++){
+      const d=days[i];const date=fmtDate(d);const day=dayName(d);
+      const prod=PRODUCTS[prodIdx%PRODUCTS.length];
+      const wk=Math.floor(i/7)+1;
+      setProg('w',Math.round((done/total)*90),`Generating ${day}...`);
+
+      const slots=getWASlots(day,wk,prod,thisTopic,guest,base);
+      for(const slot of slots){
+        const msg=slot.fixed?pickFixed(slot.fixed):await claude(slot.prompt,300);
+        addWARow([date,day,slot.time,slot.type,msg]);
+        done++;setProg('w',Math.round((done/total)*90),`${done}/${total} messages...`);
+      }
+      if(['Monday','Wednesday','Saturday'].includes(day))prodIdx++;
+    }
+    setProg('w',100,'Done!');setTimeout(()=>setProg('w',0,''),1500);
+    showTable('wa');showTab('wa',document.querySelectorAll('.tn')[2]);
+    toast('WhatsApp sheet ready ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  setBtnLoad('w',false);
+}
+
+function getWASlots(day,wk,prod,topic,guest,base){
+  const morning={time:'8:00 AM',type:'Morning Message',fixed:false,
+    prompt:`${base}Write a morning WhatsApp message for the SHELeads India community. Day: ${day}, Week ${wk}. Nikita Vora's voice — warm, direct, coaching. Speaks to Indian women balancing family and business. Start with "Good morning." End with ONE question inviting replies. 150–175 words. No hashtags. No emojis. Plain WhatsApp text only. No product mention.`};
+  const eve={time:'8:00 PM',type:'Evening Accountability',fixed:false,
+    prompt:`${base}Write a short evening WhatsApp accountability message for SHELeads India. Day: ${day}. Ask her to commit to ONE marketing action this week. Invite her to drop it in the group. 80–100 words. Plain text. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
+  const mem={time:'12:00 PM',type:`Membership — ${prod.name}`,fixed:false,
+    prompt:`${base}Write a WhatsApp message softly promoting ${prod.name} (${prod.price}) for SHELeads India. Open with a real pain point — NOT the product name. Mirror her feelings. Mention product in second half. End: Reply TELL ME MORE. 120–150 words. Plain text. No emojis. No markdown. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
+  const tip={time:'12:00 PM',type:'Value Tip',fixed:false,
+    prompt:`${base}Write a practical marketing tip WhatsApp message for SHELeads India. Day: ${day}, Week ${wk}. Connected to this week's theme: "${topic}". One real insight for Indian women entrepreneurs. End with a question. 130–155 words. Plain text. No hashtags. No emojis. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
+
+  if(day==='Monday')return[morning,mem,{time:'8:00 PM',type:'Tuesday Training Reminder',fixed:'Tue_CTA'}];
+  if(day==='Tuesday')return[{time:'8:00 AM',type:'Tuesday Training Today',fixed:'Tue_Today'},tip,eve];
+  if(day==='Wednesday')return[morning,mem,tip];
+  if(day==='Thursday')return[morning,
+    {time:'12:00 PM',type:'Podcast Announcement',fixed:false,
+     prompt:`${base}Write a WhatsApp message announcing today's SHELeads India podcast. The guest context is already in the brief above — use their specific story, background and what they'll share. Make it feel personal and specific to this guest, not generic. What will listeners gain? Warm, not corporate. End: Link in bio / reply PODCAST. 100–130 words. Plain text.`},
+    {time:'8:00 PM',type:'Friday Impl Teaser',fixed:'Thu_Teaser'}];
+  if(day==='Friday')return[{time:'8:00 AM',type:'Implementation Day',fixed:'Fri_Impl'},tip,eve];
+  if(day==='Saturday')return[
+    {time:'8:00 AM',type:'Members Spotlight',fixed:false,
+     prompt:`${base}Write a Saturday WhatsApp message encouraging SHELeads India community members to share their businesses in the group. Warm, celebratory, permission-giving. 100–120 words. Plain text.`},
+    mem,
+    {time:'8:00 PM',type:'Sunday Promo Reminder',fixed:false,
+     prompt:`${base}Write a Saturday evening WhatsApp reminder that tomorrow is open promotion day. Everyone welcome. 80–100 words. Plain text.`}];
+  if(day==='Sunday')return[
+    {time:'8:00 AM',type:'Sunday Open Promo',fixed:false,
+     prompt:`${base}Write a Sunday morning WhatsApp open promotion day message for SHELeads India. Everyone shares their business. Address women who feel shy. Give clear permission. 100–125 words. Plain text.`},
+    tip,eve];
+  return[morning,tip,eve];
+}
+
+// ════════════════════════════════════════════════
+// PAID MEMBERS WHATSAPP GENERATOR
+// ════════════════════════════════════════════════
+function addPMRow(cells){
+  const tbody=document.getElementById('body-pm');
+  const tr=document.createElement('tr');
+  ['col-date','col-day','col-time','col-type','col-content'].forEach((cls,i)=>{
+    const td=document.createElement('td');td.className=cls;td.textContent=cells[i];tr.appendChild(td);
+  });
+  const bvP=document.createElement('td');bvP.className='col-bv';bvP.appendChild(bvBtn('P'));tr.appendChild(bvP);
+  const bvN=document.createElement('td');bvN.className='col-bv';bvN.appendChild(bvBtn('N'));tr.appendChild(bvN);
+  const st=document.createElement('td');st.className='col-status';st.appendChild(spill());tr.appendChild(st);
+  tbody.appendChild(tr);
+}
+
+async function genPaidWA(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  setBtnLoad('pm',true);
+  document.getElementById('body-pm').innerHTML='';
+  const days=getDays(15);
+  const{month,week,guestCtx,trainerCtx,event,thisTopic,goalsStr}=getBriefContext();
+  let done=0,total=45;
+
+  // Paid members base — premium, exclusive, no selling
+  const pmBase=`${BRIEF}
+IMPORTANT — THIS IS FOR PAID SHELEADSINDIA MEMBERS ONLY:
+These women have paid ₹2,600 annual membership. They are serious about growing their businesses.
+Tone rules for this group:
+- Messages must be 2–3 lines MAXIMUM. Short. Dense. High value.
+- Tone: direct mentor texting a trusted student. No fluff. No motivation theatre.
+- Content: advanced tips, accountability, exclusive insider knowledge.
+- NEVER sell anything — they are already members. Zero CTAs to buy.
+- Feel like a text from Nikita, not a broadcast message.
+- Plain text only. No emojis. No hashtags.
+Month: ${month}, Week ${week}. Training topic: "${thisTopic}". ${trainerCtx} ${guestCtx} ${goalsStr}
+`;
+
+  const PM_TYPES = {
+    morning: (day,wk) => `${pmBase}Write a 2–3 line morning message for paid SHELeadsIndia members. Day: ${day}. One sharp insight or question that makes her think about her business differently today. No greeting fluff. Direct. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`,
+    tip: (day,topic) => `${pmBase}Write a 2–3 line advanced marketing tip for paid SHELeadsIndia members. Day: ${day}. Topic: ${topic}. Insider knowledge — something she won't find in a free post. Practical, specific, actionable. No intro, no outro.`,
+    accountability: (day) => `${pmBase}Write a 2–3 line accountability check-in for paid SHELeadsIndia members. Day: ${day}. One focused question about her business progress this week. Makes her stop and reflect. No filler.`,
+    training_prep: (topic) => `${pmBase}Write a 2–3 line pre-training message for paid members. Tomorrow's training: "${topic}". Tell them ONE specific thing to prepare or think about before joining. Makes them show up more ready.`,
+    training_today: (topic) => `${pmBase}Write a 2–3 line training day message for paid members. Today: "${topic}". One thing to focus on in today's session. Specific and direct.`,
+    post_training: (topic) => `${pmBase}Write a 2–3 line post-training message for paid members. Today's training was: "${topic}". Ask them: what is the ONE thing they will implement this week from today's session?`,
+    podcast_prep: () => `${pmBase}Write a 2–3 line pre-podcast message for paid members. Tomorrow: podcast with ${guestCtx}. Tell them ONE specific question to think about before listening — something specific to this guest's story and expertise.`,
+    podcast_today: () => `${pmBase}Write a 2–3 line podcast day message for paid members. Today: podcast with ${guestCtx}. One sharp reason why they must listen — specific to this guest, not generic.`,
+    impl_prep: () => `${pmBase}Write a 2–3 line message to paid members about tomorrow's Implementation session. What should they come ready with? Make it specific and action-oriented. ₹299 session reminder only if not already members.`,
+    impl_today: () => `${pmBase}Write a 2–3 line Friday Implementation Day message for paid members. One focused challenge: what will they implement today? Specific to the week's training theme: "${thisTopic}".`,
+    weekend_reflection: (day) => `${pmBase}Write a 2–3 line weekend message for paid members. Day: ${day}. One honest reflection question about their business week — not motivational, genuinely reflective. Makes her think.`,
+    week_ahead: () => `${pmBase}Write a 2–3 line Sunday message for paid members. Looking at the week ahead. One thing to prioritise or decide before Monday. Sharp, forward-looking.`
+  };
+
+  try{
+    for(let i=0;i<days.length;i++){
+      const d=days[i];const date=fmtDate(d);const day=dayName(d);
+      const wk=Math.floor(i/7)+1;
+      setProg('pm',Math.round((done/total)*90),`Generating ${day} paid messages...`);
+
+      let slots=[];
+
+      if(day==='Monday'){
+        slots=[
+          {time:'8:00 AM',type:'Morning Insight',prompt:PM_TYPES.morning(day,wk)},
+          {time:'12:00 PM',type:'Training Prep',prompt:PM_TYPES.training_prep(thisTopic)},
+          {time:'8:00 PM',type:'Accountability Check',prompt:PM_TYPES.accountability(day)}
+        ];
+      } else if(day==='Tuesday'){
+        slots=[
+          {time:'8:00 AM',type:'Training Day',prompt:PM_TYPES.training_today(thisTopic)},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,thisTopic)},
+          {time:'8:00 PM',type:'Post-Training Action',prompt:PM_TYPES.post_training(thisTopic)}
+        ];
+      } else if(day==='Wednesday'){
+        slots=[
+          {time:'8:00 AM',type:'Morning Insight',prompt:PM_TYPES.morning(day,wk)},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,thisTopic)},
+          {time:'8:00 PM',type:'Podcast Prep',prompt:PM_TYPES.podcast_prep()}
+        ];
+      } else if(day==='Thursday'){
+        slots=[
+          {time:'8:00 AM',type:'Podcast Day',prompt:PM_TYPES.podcast_today()},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,thisTopic)},
+          {time:'8:00 PM',type:'Implementation Prep',prompt:PM_TYPES.impl_prep()}
+        ];
+      } else if(day==='Friday'){
+        slots=[
+          {time:'8:00 AM',type:'Implementation Day',prompt:PM_TYPES.impl_today()},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,thisTopic)},
+          {time:'8:00 PM',type:'Week Reflection',prompt:PM_TYPES.accountability(day)}
+        ];
+      } else if(day==='Saturday'){
+        slots=[
+          {time:'8:00 AM',type:'Weekend Reflection',prompt:PM_TYPES.weekend_reflection(day)},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,'reviewing and consolidating the week\'s learning')},
+          {time:'8:00 PM',type:'Week Ahead Prep',prompt:PM_TYPES.week_ahead()}
+        ];
+      } else if(day==='Sunday'){
+        slots=[
+          {time:'8:00 AM',type:'Week Ahead',prompt:PM_TYPES.week_ahead()},
+          {time:'12:00 PM',type:'Advanced Tip',prompt:PM_TYPES.tip(day,thisTopic)},
+          {time:'8:00 PM',type:'Accountability',prompt:PM_TYPES.accountability(day)}
+        ];
+      }
+
+      for(const slot of slots){
+        const msg=await claude(slot.prompt,120);// Max 120 tokens = 2-3 lines enforced
+        addPMRow([date,day,slot.time,slot.type,msg]);
+        done++;setProg('pm',Math.round((done/total)*90),`${done}/${total} messages...`);
+      }
+    }
+
+    setProg('pm',100,'Done!');setTimeout(()=>setProg('pm',0,''),1500);
+    showTable('pm');
+    // Switch to paid-wa tab
+    document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tn').forEach(t=>t.classList.remove('active'));
+    document.getElementById('tab-paid-wa').classList.add('active');
+    document.querySelectorAll('.tn')[3].classList.add('active');
+    toast('Paid Members sheet ready ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  setBtnLoad('pm',false);
+}
+
+// ════════════════════════════════════════════════
+// NEWSLETTER GENERATOR — ABCD SYSTEM
+// ════════════════════════════════════════════════
+async function genNewsletter(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  setBtnLoad('n',true);
+  document.getElementById('body-nl').innerHTML='';
+  const{month,week,thisTopic,goalsStr}=getBriefContext();
+  const prod=PRODUCTS[0];// Membership as default for newsletter
+
+  const base=`${BRIEF}\nMonth: ${month}. This Tuesday's training topic: "${thisTopic}". ${goalsStr}\n`;
+
+  const editions=[
+    {num:1,sendDate:getNextMonday(1)},
+    {num:2,sendDate:getNextMonday(3)}
+  ];
+
+  const addNLRow=(edition,sendDate,section,content)=>{
+    const tbody=document.getElementById('body-nl');
+    const tr=document.createElement('tr');
+    [`Edition ${edition}`,sendDate,section,content].forEach((c,i)=>{
+      const td=document.createElement('td');
+      td.textContent=c;
+      if(i===3){td.className='col-content';}
+      tr.appendChild(td);
+    });
+    const bvP=document.createElement('td');bvP.className='col-bv';bvP.appendChild(bvBtn('P'));tr.appendChild(bvP);
+    const bvN=document.createElement('td');bvN.className='col-bv';bvN.appendChild(bvBtn('N'));tr.appendChild(bvN);
+    const st=document.createElement('td');st.className='col-status';st.appendChild(spill());tr.appendChild(st);
+    tbody.appendChild(tr);
+  };
+
+  try{
+    for(const ed of editions){
+      setProg('n',ed.num===1?10:60,`Generating Edition ${ed.num}...`);
+
+      // Subject lines
+      const subj=await claude(`${base}Write 2 newsletter subject lines for SHELeads India Edition ${ed.num}.\nA: curiosity-driven (under 50 chars)\nB: benefit-driven (under 50 chars)\nFor women entrepreneurs in India.\nWrite: A: [subject] and B: [subject] only.`,100);
+      addNLRow(ed.num,ed.sendDate,'Subject Lines (A/B)',subj);
+
+      // Preview text
+      const prev=await claude(`${base}Write a preview text (max 90 chars) for SHELeads India newsletter Edition ${ed.num}. Warm and intriguing. Write only the preview text.`,80);
+      addNLRow(ed.num,ed.sendDate,'Preview Text',prev);
+
+      // A — App of the week
+      const appSec=await claude(`${base}Write the "A — App of the Week" section for SHELeads India newsletter.\nSuggest one latest, genuinely useful app or AI tool for women entrepreneurs right now.\nName the app. What does it do. Why it matters for her business. One practical tip to start.\n80–100 words. Plain text. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`,200);
+      addNLRow(ed.num,ed.sendDate,'A — App of the Week',appSec);
+
+      // B — Business inspiration
+      const bizSec=await claude(`${base}Write the "B — Business Inspiration" section for SHELeads India newsletter.\nA brief, inspiring story of a real or realistic Indian woman entrepreneur.\nHer challenge, her turn, her win. Keep it short and punchy.\n100–120 words. Plain text. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`,250);
+      addNLRow(ed.num,ed.sendDate,'B — Business Inspiration',bizSec);
+
+      // C — Concept of the week
+      const concSec=await claude(`${base}Write the "C — Concept of the Week" section for SHELeads India newsletter.\nOne trending marketing concept right now that matters for women entrepreneurs.\nExplain it simply — what it is, why it matters, one action to try.\n80–100 words. Plain text. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`,200);
+      addNLRow(ed.num,ed.sendDate,'C — Concept of the Week',concSec);
+
+      // D — Digital strategy that worked
+      const digSec=await claude(`${base}Write the "D — Digital Strategy That Worked" section for SHELeads India newsletter.\nOne real or realistic case study: a woman-led business that used digital marketing or AI to grow.\nBullet points: What they did. What happened. What you can steal from this.\n80–100 words. Plain text. Bullet points using dashes only.`,200);
+      addNLRow(ed.num,ed.sendDate,'D — Digital Strategy (Case Study)',digSec);
+
+      // Nikita's opening note (placeholder — she rewrites)
+      const note=await claude(`${base}Write a draft opening note for Nikita Vora for SHELeads India newsletter Edition ${ed.num}.\nReflective, warm, first-person. A lesson or moment from this month.\n70–80 words. Plain text. NOTE: This is a DRAFT — Nikita must rewrite in her own words before sending.`,150);
+      addNLRow(ed.num,ed.sendDate,"Nikita's Note (DRAFT — Nikita rewrites this)",note);
+
+      // Product feature
+      const prodSec=await claude(`${base}Write a product feature section for SHELeads India newsletter for: ${prod.name} (${prod.price}).\nSoft, helpful framing. 40–50 words. End with clear CTA button text. Plain text.`,100);
+      addNLRow(ed.num,ed.sendDate,`Product Feature — ${prod.name}`,prodSec);
+
+      // Sign off
+      const signoff=await claude(`${base}Write Nikita Vora's sign-off for SHELeads India newsletter Edition ${ed.num}. Warm, personal. 40–55 words. Plain text.`,100);
+      addNLRow(ed.num,ed.sendDate,'Sign-off',signoff);
+    }
+
+    setProg('n',100,'Done!');setTimeout(()=>setProg('n',0,''),1500);
+    showTable('nl');showTab('newsletter',document.querySelectorAll('.tn')[3]);
+    toast('Newsletter sheet ready ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  setBtnLoad('n',false);
+}
+
+function getNextMonday(weeksAhead){
+  const d=new Date();const day=d.getDay();const diff=(1-day+7)%7||7;
+  d.setDate(d.getDate()+diff+(weeksAhead-1)*14);return fmtDate(d);
+}
+
+// ════════════════════════════════════════════════
+// BLOG GENERATOR
+// ════════════════════════════════════════════════
+async function genBlog(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  setBtnLoad('b',true);
+  document.getElementById('body-blog').innerHTML='';
+  const{month,thisTopic,goalsStr}=getBriefContext();
+  const base=`${BRIEF}\nMonth: ${month}. Training topic: "${thisTopic}". ${goalsStr}\n`;
+
+  const posts=[
+    {keyword:`${thisTopic.toLowerCase()} women entrepreneurs India`,title:`How Women Entrepreneurs in India Are Using ${thisTopic} to Grow Their Business`,prod:PRODUCTS[0]},
+    {keyword:'digital marketing women entrepreneurs India',title:'The Digital Marketing Playbook Every Indian Woman Entrepreneur Needs in 2026',prod:PRODUCTS[2]}
+  ];
+
+  const addBlogRow=(pubDate,title,section,content,keyword)=>{
+    const tbody=document.getElementById('body-blog');
+    const tr=document.createElement('tr');
+    [pubDate,title,section,content,keyword].forEach((c,i)=>{
+      const td=document.createElement('td');td.textContent=c;
+      if(i===3)td.className='col-content';
+      tr.appendChild(td);
+    });
+    const bvP=document.createElement('td');bvP.className='col-bv';bvP.appendChild(bvBtn('P'));tr.appendChild(bvP);
+    const bvN=document.createElement('td');bvN.className='col-bv';bvN.appendChild(bvBtn('N'));tr.appendChild(bvN);
+    const st=document.createElement('td');st.className='col-status';st.appendChild(spill());tr.appendChild(st);
+    tbody.appendChild(tr);
+  };
+
+  try{
+    for(let p=0;p<posts.length;p++){
+      const post=posts[p];
+      const pubDate=getFirstWed(p);
+      setProg('b',p===0?10:60,`Generating Blog Post ${p+1}...`);
+
+      const secs=[
+        {s:'SEO Title + Meta Description',pr:`Write SEO title (60 chars max) and meta description (155 chars max) for a blog post.\nTitle idea: "${post.title}"\nPrimary keyword: "${post.keyword}"\nFormat: TITLE: ... then META: ...`,tok:150},
+        {s:'H1 + Introduction',pr:`Write the H1 headline and 2-paragraph introduction for this blog post: "${post.title}". Keyword: "${post.keyword}". Hook in sentence 1. SHELeadsIndia's voice. Write as the brand — never as an individual. SHELeadsIndia speaks TO Indian women entrepreneurs, not about one person. Her world: she's running a business AND managing a home. She Googles things at midnight. She second-guesses her prices. Tech feels overwhelming but she knows she can't ignore it. She's brilliant but underestimated. She wants to grow — without burning out. Write in warm, direct, conversational Indian English. Like a knowledgeable friend who truly gets it. Make her think: "this was written for ME." Avoid corporate jargon. Use "she/her" or "you" — never "I/me/my" (you are not an individual, you are a community). Every line must earn its place. Plain text.`,tok:250},
+        {s:'Section 1',pr:`Write H2 Section 1 for blog post: "${post.title}". Keyword: "${post.keyword}". 150–200 words. Practical, grounded in Indian women entrepreneur reality. Plain text.`,tok:300},
+        {s:'Section 2',pr:`Write H2 Section 2 for blog post: "${post.title}". Keyword: "${post.keyword}". 150–200 words. Include a specific example or scenario. Plain text.`,tok:300},
+        {s:'Section 3',pr:`Write H2 Section 3 for blog post: "${post.title}". Keyword: "${post.keyword}". 150–200 words. Actionable advice. Plain text.`,tok:300},
+        {s:'Pull Quote (Nikita\'s voice)',pr:`Write one powerful pull quote in Nikita Vora's voice for this blog: "${post.title}". Max 20 words. Real and direct. Plain text.`,tok:60},
+        {s:`CTA Box — ${post.prod.name}`,pr:`Write a 30-word CTA box for ${post.prod.name} (${post.prod.price}) to embed in this blog. Helpful framing. End with CTA text for a button. Plain text.`,tok:80},
+        {s:'Closing + Community CTA',pr:`Write the closing paragraph and community CTA for blog: "${post.title}". End with invitation to join SHELeads India. 80–100 words. Plain text.`,tok:150}
+      ];
+
+      for(const sec of secs){
+        const content=await claude(`${base}${sec.pr}`,sec.tok);
+        addBlogRow(pubDate,post.title,sec.s,content,post.keyword);
+      }
+    }
+
+    setProg('b',100,'Done!');setTimeout(()=>setProg('b',0,''),1500);
+    showTable('blog');showTab('blog',document.querySelectorAll('.tn')[4]);
+    toast('Blog sheet ready ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  setBtnLoad('b',false);
+}
+
+function getFirstWed(offset){
+  const d=new Date();d.setMonth(d.getMonth()+offset);d.setDate(1);
+  while(d.getDay()!==3)d.setDate(d.getDate()+1);return fmtDate(d);
+}
+
+// ════════════════════════════════════════════════
+// MONTHLY GOALS
+// ════════════════════════════════════════════════
+function openGoals(){
+  const saved=getGoals();
+  if(saved){
+    // Pre-fill with saved values
+    document.getElementById('g-month').value=saved.month||'March 2026';
+    document.getElementById('g-focus').value=saved.focus||'';
+    document.getElementById('ga-rev').value=saved.actuals?.rev||'';
+    document.getElementById('ga-audit').value=saved.actuals?.audit||'';
+    document.getElementById('ga-mem').value=saved.actuals?.mem||'';
+    document.getElementById('ga-impl').value=saved.actuals?.impl||'';
+    document.getElementById('ga-prog').value=saved.actuals?.prog||'';
+    document.getElementById('ga-ment').value=saved.actuals?.ment||'';
+    document.getElementById('ga-nl').value=saved.actuals?.nl||'';
+    document.getElementById('ga-blog').value=saved.actuals?.blog||'';
+    document.getElementById('gt-rev').value=saved.targets?.rev||'';
+    document.getElementById('gt-audit').value=saved.targets?.audit||'';
+    document.getElementById('gt-mem').value=saved.targets?.mem||'';
+    document.getElementById('gt-impl').value=saved.targets?.impl||'';
+    document.getElementById('gt-prog').value=saved.targets?.prog||'';
+    document.getElementById('gt-ment').value=saved.targets?.ment||'';
+    document.getElementById('gt-nl').value=saved.targets?.nl||'';
+    document.getElementById('gt-blog').value=saved.targets?.blog||'';
+  }
+  document.getElementById('goalsModal').classList.add('show');
+}
+function closeGoals(){document.getElementById('goalsModal').classList.remove('show');}
+document.getElementById('goalsModal').addEventListener('click',e=>{if(e.target===document.getElementById('goalsModal'))closeGoals();});
+
+async function saveGoals(){
+  if(!API_KEY){toast('Set API key first','err');return;}
+  const btn=document.getElementById('goals-save-btn');
+  btn.disabled=true;btn.classList.add('loading');
+
+  const g=id=>document.getElementById(id).value||'0';
+  const goals={
+    month:g('g-month'),focus:g('g-focus'),
+    actuals:{rev:g('ga-rev'),audit:g('ga-audit'),mem:g('ga-mem'),impl:g('ga-impl'),prog:g('ga-prog'),ment:g('ga-ment'),nl:g('ga-nl'),blog:g('ga-blog')},
+    targets:{rev:g('gt-rev'),audit:g('gt-audit'),mem:g('gt-mem'),impl:g('gt-impl'),prog:g('gt-prog'),ment:g('gt-ment'),nl:g('gt-nl'),blog:g('gt-blog')},
+    setDate:new Date().toISOString()
+  };
+
+  try{
+    const analysis=await claude(`${BRIEF}
+Monthly goals analysis for SHELeads India — ${goals.month}.
+Focus: ${goals.focus}
+
+Last month actuals: Revenue ₹${goals.actuals.rev}, Audits sold ${goals.actuals.audit}, Memberships ${goals.actuals.mem}, Implementation attendees ${goals.actuals.impl}, AI Programme ${goals.actuals.prog}, Mentoring ${goals.actuals.ment}, Newsletter subs ${goals.actuals.nl}, Blog sessions ${goals.actuals.blog}
+
+This month targets: Revenue ₹${goals.targets.rev}, Audits ${goals.targets.audit}, Memberships ${goals.targets.mem}, Implementation ${goals.targets.impl}, AI Programme ${goals.targets.prog}, Mentoring ${goals.targets.ment}, Newsletter ${goals.targets.nl}, Blog ${goals.targets.blog}
+
+Provide:
+1. EXECUTIVE SUMMARY (2–3 sentences — what the data shows)
+2. TOP 3 PRIORITIES THIS MONTH (numbered, specific actions)
+3. CONTENT ALIGNMENT (how content should support the biggest gap)
+4. RISK TO WATCH (one sentence)
+
+Plain text. No markdown. Nikita Vora reads this.`,600);
+
+    goals.analysis=analysis;
+    localStorage.setItem('sli_goals',JSON.stringify(goals));
+    closeGoals();
+    updateGoalsUI();
+    showTab('goals-view',document.querySelectorAll('.tn')[5]);
+    toast('Goals saved for '+goals.month+' ✓','ok');
+  }catch(e){toast('Error: '+e.message,'err');}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+function updateGoalsUI(){
+  const g=getGoals();if(!g)return;
+
+  // Header button
+  const btn=document.getElementById('goalsBtn');
+  const now=new Date();const isThisMonth=g.month.includes(now.toLocaleString('en',{month:'long'}));
+  btn.className='hdr-btn '+(isThisMonth?'goals-set':'goals-locked');
+  document.getElementById('goalsBtnLabel').textContent=isThisMonth?('🎯 '+g.month+' Goals ✓'):('⚠️ Update Goals for New Month');
+
+  document.getElementById('goals-month-label').textContent=`Goals set for ${g.month} — focus: ${g.focus}`;
+
+  const metrics=[
+    {label:'Revenue (₹)',actual:g.actuals.rev,target:g.targets.rev,unit:'₹'},
+    {label:'₹99 Audit sales',actual:g.actuals.audit,target:g.targets.audit,unit:''},
+    {label:'Membership sign-ups',actual:g.actuals.mem,target:g.targets.mem,unit:''},
+    {label:'Implementation attendees',actual:g.actuals.impl,target:g.targets.impl,unit:''},
+    {label:'AI Programme enrolments',actual:g.actuals.prog,target:g.targets.prog,unit:''},
+    {label:'1:1 Mentoring clients',actual:g.actuals.ment,target:g.targets.ment,unit:''},
+    {label:'Newsletter subscribers',actual:g.actuals.nl,target:g.targets.nl,unit:''},
+    {label:'Blog sessions',actual:g.actuals.blog,target:g.targets.blog,unit:''}
+  ];
+
+  const grid=document.getElementById('goals-display');
+  grid.innerHTML='<div class="goals-grid"></div>';
+  const gg=grid.querySelector('.goals-grid');
+
+  metrics.forEach(m=>{
+    const tgt=parseFloat(m.target)||0;const act=parseFloat(m.actual)||0;
+    const gap=tgt-act;const gapTxt=gap>0?`+${m.unit}${Math.abs(gap).toLocaleString('en-IN')} needed`:'✓ exceeded';
+    const gapCls=gap>0?'gap-bad':'gap-good';
+    const card=document.createElement('div');card.className='goal-card';
+    card.innerHTML=`<div class="gc-label">${m.label}</div>
+      <div class="gc-val">${m.unit}${tgt.toLocaleString('en-IN')}</div>
+      <div class="gc-sub">Target | Last month: ${m.unit}${act.toLocaleString('en-IN')}</div>
+      <div class="${gapCls}" style="font-size:11px;margin-top:4px">${gapTxt}</div>
+      <div class="gc-actual"><input type="text" placeholder="Actual (fill end of month)"></div>`;
+    gg.appendChild(card);
+  });
+
+  if(g.analysis){
+    document.getElementById('goals-analysis').style.display='block';
+    document.getElementById('goals-analysis-content').textContent=g.analysis;
+  }
+}
+
+// ════ CSV DOWNLOAD ════
+function dlCSV(tblId,name){
+  const tbl=document.getElementById(tblId);if(!tbl)return;
+  let csv='';
+  tbl.querySelectorAll('tr').forEach(row=>{
+    const vals=Array.from(row.querySelectorAll('th,td')).map(c=>'"'+c.textContent.replace(/"/g,'""').replace(/\n/g,' ')+'"');
+    csv+=vals.join(',')+'\n';
+  });
+  const b=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download=name+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  toast('CSV downloaded ✓','ok');
+}
+
+// ════ INIT ════
+window.addEventListener('load',()=>{
+  updateApiUI();
+  updateGoalsUI();
+  // Auto-select correct month
+  const now=new Date();
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const cur=months[now.getMonth()]+' '+now.getFullYear();
+  const sel=document.getElementById('f-month');
+  Array.from(sel.options).forEach(o=>{if(o.value===months[now.getMonth()])sel.value=o.value;});
+
+  // Check if goals need updating (new month)
+  const g=getGoals();
+  if(g){
+    const setMonth=g.month;
+    const curMonth=months[now.getMonth()]+' '+now.getFullYear();
+    if(setMonth!==curMonth){
+      const btn=document.getElementById('goalsBtn');
+      btn.className='hdr-btn goals-locked';
+      document.getElementById('goalsBtnLabel').textContent='⚠️ Set Goals for '+curMonth;
+    }
+  }
+});
+</script>
+
+
+<div id="cb-connect-sidebar-main"><div id="cb-connect-sidebar"><a href="#" class="cb-connect-close-sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M3.3352346,13.1409137 L3.33523455,13.1409138 C2.91548014,13.5733825 2.92546046,14.2645641 3.35752584,14.684707 C3.78087294,15.0963751 4.45458199,15.0962796 4.87780976,14.6844919 L9.00453522,10.5538595 L13.1373639,14.6904917 L13.1373638,14.6904917 C13.568947,15.1110906 14.2594594,15.1018597 14.6796682,14.6698737 C15.0920236,14.2459591 15.0919517,13.570408 14.6795052,13.1465834 L10.5469491,9.01016937 L14.6955806,4.85777412 L14.6955806,4.85777409 C15.1130468,4.423134 15.0994531,3.73205118 14.6652183,3.31419357 C14.2430237,2.90792372 13.5756331,2.90792372 13.1534407,3.31419361 L9.00453675,7.46620706 L4.86206292,3.31981159 L4.86206295,3.31981162 C4.436122,2.89342832 3.74549844,2.89339123 3.31951335,3.31972975 C2.89352771,3.74606833 2.89349066,4.43733659 3.31943155,4.86371935 L7.46206886,9.01011482 L3.3352346,13.1409137 Z" fill=""></path></svg></a><div id="cb-connect-sidebar-loading">
+        <div>
+          <div class="cb-connect-sidebar-loading-outer">
+            <div class="cb-connect-sidebar-loading-inner">
+              <img src="chrome-extension://pmnhcgfcafcnkbengdcanjablaabjplo/src/assets/logo.svg" width="40" height="40">
+              <div class="cb-connect-sidebar-loading-inner-text">Loading...</div>
+            </div>
+          </div>
+        </div>
+      </div><div><iframe id="cb-connect-sidebar-iframe" lang="en" class="cb-connect-sidebar-container" style="height: 100vh; min-height: 100vh"></iframe></div></div><div id="cb-connect-open-button-outer" class="cb-connect-open-button-is-tucked" style="inset: 64px 0px auto auto;"><div id="cb-connect-open-button-inner" style="background: rgb(20, 140, 252);">
+          <img src="chrome-extension://pmnhcgfcafcnkbengdcanjablaabjplo/src/assets/logo-dark-background.svg" width="20" height="20" style="user-select: none;width: 20px !important;height:20px !important;filter: none !important;">
+
+          <div id="cb-connect-open-button-icp-message" style="display: none;">ICP</div>
+        <div id="cb-connect-open-button-move-button"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M4 12.5V11h12v1.5ZM4 9V7.5h12V9Z"></path></svg></div><a href="#" id="cb-connect-close-widget-button" title="Hide widget on this site or all sites"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M3.3352346,13.1409137 L3.33523455,13.1409138 C2.91548014,13.5733825 2.92546046,14.2645641 3.35752584,14.684707 C3.78087294,15.0963751 4.45458199,15.0962796 4.87780976,14.6844919 L9.00453522,10.5538595 L13.1373639,14.6904917 L13.1373638,14.6904917 C13.568947,15.1110906 14.2594594,15.1018597 14.6796682,14.6698737 C15.0920236,14.2459591 15.0919517,13.570408 14.6795052,13.1465834 L10.5469491,9.01016937 L14.6955806,4.85777412 L14.6955806,4.85777409 C15.1130468,4.423134 15.0994531,3.73205118 14.6652183,3.31419357 C14.2430237,2.90792372 13.5756331,2.90792372 13.1534407,3.31419361 L9.00453675,7.46620706 L4.86206292,3.31981159 L4.86206295,3.31981162 C4.436122,2.89342832 3.74549844,2.89339123 3.31951335,3.31972975 C2.89352771,3.74606833 2.89349066,4.43733659 3.31943155,4.86371935 L7.46206886,9.01011482 L3.3352346,13.1409137 Z" fill=""></path></svg></a></div></div></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
