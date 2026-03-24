@@ -917,7 +917,7 @@ function getBriefContext(){
   const weekIdx=parseInt(week)-1;
   const thisTopic=topics[weekIdx]||topics[0]||'Digital marketing tools for women entrepreneurs';
   const goals=getGoals();
-  const goalsStr=goals?`Monthly goals: Revenue ₹${goals.targets.rev}, Membership ${goals.targets.mem} sign-ups, Audit ${goals.targets.audit} sales, AI Programme ${goals.targets.prog} enrolments. Focus: ${goals.focus}.`:'No goals set yet.';
+  const goalsStr=goals&&goals.targets?`Monthly goals: Revenue ₹${goals.targets.rev}, Membership ${goals.targets.mem} sign-ups, Audit ${goals.targets.audit} sales, AI Programme ${goals.targets.prog} enrolments. Focus: ${goals.focus}.`:'No goals set yet.';
 
   // Build personalised guest context
   const guestCtx=guestBio
