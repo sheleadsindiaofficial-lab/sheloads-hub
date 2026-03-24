@@ -1105,36 +1105,45 @@ async function genWA(){
 }
 
 function getWASlots(day,wk,prod,topic,guest,base){
-  const morning={time:'8:00 AM',type:'Morning Message',fixed:false,
-    prompt:`${base}Write a morning WhatsApp message for the SHELeads India community. Day: ${day}, Week ${wk}. Nikita Vora's voice — warm, direct, coaching. Speaks to Indian women balancing family and business. Start with "Good morning." End with ONE question inviting replies. 150–175 words. No hashtags. No emojis. Plain WhatsApp text only. No product mention.`};
-  const eve={time:'8:00 PM',type:'Evening Accountability',fixed:false,
-    prompt:`${base}Write a short evening WhatsApp accountability message for SHELeads India. Day: ${day}. Ask her to commit to ONE marketing action this week. Invite her to drop it in the group. 80–100 words. Plain text. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
-  const mem={time:'12:00 PM',type:`Membership — ${prod.name}`,fixed:false,
-    prompt:`${base}Write a WhatsApp message softly promoting ${prod.name} (${prod.price}) for SHELeads India. Open with a real pain point — NOT the product name. Mirror her feelings. Mention product in second half. End: Reply TELL ME MORE. 120–150 words. Plain text. No emojis. No markdown. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
-  const tip={time:'12:00 PM',type:'Value Tip',fixed:false,
-    prompt:`${base}Write a practical marketing tip WhatsApp message for SHELeads India. Day: ${day}, Week ${wk}. Connected to this week's theme: "${topic}". One real insight for Indian women entrepreneurs. End with a question. 130–155 words. Plain text. No hashtags. No emojis. SHELeadsIndia's voice. Write AS the brand/community, never as an individual. Speak to Indian women entrepreneurs: juggling home and business, ambitious but overwhelmed by tech, craving real community and real growth. Warm, direct, conversational Indian English. Make her feel seen.`};
+    const WA=`WHATSAPP RULES — FOLLOW ALL WITHOUT EXCEPTION:
+    • 8AM messages MUST open with: "Hey Ladies, Good morning! ☀️"
+  • 12PM messages MUST open with: "Hey Ladies,"
+  • 8PM messages MUST open with: "Hey Ladies, Good evening! 🌙"
+  • Nikita always addresses her community as "Hey Ladies" — never "Hey lovely", "Hey you", "Good morning." alone, or any other greeting
+  • MAXIMUM 65 words total — count every word and cut ruthlessly if over
+  • End with ONE short question she will actually reply to in the group chat
+  • Write exactly like a warm WhatsApp text from a knowledgeable friend — NOT an essay, NOT a formal paragraph, NOT motivational speech
+  • NO markdown, NO bold (**text**), NO headers (#), NO dashes (---), NO asterisks, NO word counts, NO meta-commentary
+  • If no podcast guest confirmed: write a warm generic teaser — NEVER ask for more information or say guest is TBC`;
+    const morning={time:'8:00 AM',type:'Morning Message',fixed:false,
+      prompt:`${base}\n${WA}\nWrite a morning WhatsApp message for SHELeadsIndia free community. Day: ${day}, Week ${wk}. Topic this week: ${topic}. MUST open: "Hey Ladies, Good morning! ☀️" — one relatable truth or challenge Indian women face running a business today. End with one punchy question she will answer. MAX 65 words.`};
+    const eve={time:'8:00 PM',type:'Evening Accountability',fixed:false,
+      prompt:`${base}\n${WA}\nWrite an evening WhatsApp accountability nudge for SHELeadsIndia free community. Day: ${day}. MUST open: "Hey Ladies, Good evening! 🌙" — ask her to drop ONE marketing action she commits to this week. Warm, energetic, makes her want to type a reply right now. MAX 65 words.`};
+    const mem={time:'12:00 PM',type:`Membership — ${prod.name}`,fixed:false,
+                   prompt:`${base}\n${WA}\nWrite a WhatsApp soft promo for ${prod.name} (${prod.price}) for SHELeadsIndia. MUST open: "Hey Ladies," — lead with ONE real pain point Indian women entrepreneurs feel right now. Make the product feel like the obvious next step. End with: "Reply TELL ME MORE 💚" MAX 65 words.`};
+    const tip={time:'12:00 PM',type:'Value Tip',fixed:false,
+                   prompt:`${base}\n${WA}\nWrite a WhatsApp value tip for SHELeadsIndia free community. Day: ${day}, Week ${wk}. Topic: ${topic}. MUST open: "Hey Ladies," — give ONE practical tip she can act on TODAY. End with one simple question that sparks replies in the group. MAX 65 words.`};
 
-  if(day==='Monday')return[morning,mem,{time:'8:00 PM',type:'Tuesday Training Reminder',fixed:'Tue_CTA'}];
-  if(day==='Tuesday')return[{time:'8:00 AM',type:'Tuesday Training Today',fixed:'Tue_Today'},tip,eve];
-  if(day==='Wednesday')return[morning,mem,tip];
-  if(day==='Thursday')return[morning,
-    {time:'12:00 PM',type:'Podcast Announcement',fixed:false,
-     prompt:`${base}Write a WhatsApp message announcing today's SHELeads India podcast. The guest context is already in the brief above — use their specific story, background and what they'll share. Make it feel personal and specific to this guest, not generic. What will listeners gain? Warm, not corporate. End: Link in bio / reply PODCAST. 100–130 words. Plain text.`},
-    {time:'8:00 PM',type:'Friday Impl Teaser',fixed:'Thu_Teaser'}];
-  if(day==='Friday')return[{time:'8:00 AM',type:'Implementation Day',fixed:'Fri_Impl'},tip,eve];
-  if(day==='Saturday')return[
-    {time:'8:00 AM',type:'Members Spotlight',fixed:false,
-     prompt:`${base}Write a Saturday WhatsApp message encouraging SHELeads India community members to share their businesses in the group. Warm, celebratory, permission-giving. 100–120 words. Plain text.`},
-    mem,
-    {time:'8:00 PM',type:'Sunday Promo Reminder',fixed:false,
-     prompt:`${base}Write a Saturday evening WhatsApp reminder that tomorrow is open promotion day. Everyone welcome. 80–100 words. Plain text.`}];
-  if(day==='Sunday')return[
-    {time:'8:00 AM',type:'Sunday Open Promo',fixed:false,
-     prompt:`${base}Write a Sunday morning WhatsApp open promotion day message for SHELeads India. Everyone shares their business. Address women who feel shy. Give clear permission. 100–125 words. Plain text.`},
-    tip,eve];
-  return[morning,tip,eve];
-}
-
+    if(day==='Monday')return[morning,mem,{time:'8:00 PM',type:'Tuesday Training Reminder',fixed:'Tue_CTA'}];
+    if(day==='Tuesday')return[{time:'8:00 AM',type:'Tuesday Training Today',fixed:'Tue_Today'},tip,eve];
+    if(day==='Wednesday')return[morning,mem,tip];
+    if(day==='Thursday')return[morning,
+  {time:'12:00 PM',type:'Podcast Announcement',fixed:false,
+        prompt:`${base}\n${WA}\nWrite a WhatsApp podcast announcement for SHELeadsIndia. MUST open: "Hey Ladies," — if guest details are in the brief above, use them to make it personal and exciting. If no guest is confirmed, write exactly: "Hey Ladies, 🎙️ Big news this Thursday — a very special guest is joining the SHELeads podcast. Her story will give you ALL the feels. Drop a 🙋‍♀️ if you want to be tagged when it drops!" MAX 65 words.`},
+  {time:'8:00 PM',type:'Friday Impl Teaser',fixed:'Thu_Teaser'}];
+      if(day==='Friday')return[{time:'8:00 AM',type:'Implementation Day',fixed:'Fri_Impl'},tip,eve];
+    if(day==='Saturday')return[
+  {time:'8:00 AM',type:'Members Spotlight',fixed:false,
+        prompt:`${base}\n${WA}\nWrite a Saturday morning WhatsApp for SHELeadsIndia free community to encourage women to share their business in the group. MUST open: "Hey Ladies, Good morning! ☀️" — warm, proud, zero pressure. End with: "Share your business name + what you do below 👇" MAX 65 words.`},
+      mem,
+{time:'8:00 PM',type:'Sunday Promo Reminder',fixed:false,
+       prompt:`${base}\n${WA}\nWrite a Saturday evening WhatsApp reminder for SHELeadsIndia that tomorrow is Open Promotion Sunday. MUST open: "Hey Ladies, Good evening! 🌙" — make it exciting, warm, everyone is welcome. MAX 65 words.`}];
+    if(day==='Sunday')return[
+  {time:'8:00 AM',type:'Sunday Open Promo',fixed:false,
+        prompt:`${base}\n${WA}\nWrite a Sunday morning WhatsApp Open Promotion message for SHELeadsIndia. MUST open: "Hey Ladies, Good morning! ☀️" — today every woman shares her business with no apologies. Warm, proud, excited. End with: "Share your business below 👇 We are cheering for you!" MAX 65 words.`},
+      tip,eve];
+      return[morning,tip,eve];
+  }
 // ════════════════════════════════════════════════
 // PAID MEMBERS WHATSAPP GENERATOR
 // ════════════════════════════════════════════════
